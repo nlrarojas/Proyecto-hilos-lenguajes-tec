@@ -36,14 +36,14 @@ public class Figure {
         int lowerLimit = 0;
         int upperLimit = drawingWidth - size;    
 
-        x += dx;
-        if (x < lowerLimit) {
-            dx *= -1;     
-        } else if (x > upperLimit) {
+        //x += dx;
+        //if (x < lowerLimit) {
+          ///  dx *= -1;     
+        //} else if (x > upperLimit) {
             dx *= -1;
-        }
+        //}
 
-        y += dy;
+        y += 1;
         if (y < lowerLimit) {
             dy *= -1;
         } else if (y > upperLimit) {
