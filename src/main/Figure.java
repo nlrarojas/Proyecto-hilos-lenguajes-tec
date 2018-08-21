@@ -19,7 +19,7 @@ public class Figure {
     private Color objectColor;
 
     public Figure(int drawingWidth, int drawingHeight) {   
-        this.drawingWidth = drawingWidth - 50;
+        this.drawingWidth = drawingWidth - 100;
         this.drawingHeight = drawingHeight;
         
         x = (Math.random() * drawingWidth + size) + drawingWidth / 2;
