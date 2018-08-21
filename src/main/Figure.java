@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Figure {
 
-    private static final int size = 20;
+    private static final int size = 10;
 
     private double x;
     private double y;
@@ -22,8 +22,8 @@ public class Figure {
         
         x = Math.random() * range + size;
         y = Math.random() * range + size;
-        dx = (int)Math.round(Math.random());
-        dy = (int)Math.round(Math.random());
+        dx = 200; //(int)Math.round(Math.random());
+        dy = 200;//(int)Math.round(Math.random());
         
         this.drawingWidth = drawingWidth;
         this.objectColor = generateRandomColor();
@@ -40,7 +40,7 @@ public class Figure {
         //if (x < lowerLimit) {
           ///  dx *= -1;     
         //} else if (x > upperLimit) {
-            dx *= -1;
+            //dx *= -1;
         //}
 
         y += 1;

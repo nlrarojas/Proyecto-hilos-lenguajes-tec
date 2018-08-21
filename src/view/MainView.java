@@ -49,18 +49,18 @@ public class MainView extends javax.swing.JFrame implements Runnable {
         
         JPanel menuPanel = new JPanel();
         
-        JPanel panel = new JPanel();
+        JPanel gamePanel = new JPanel();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addComponent(menuPanel, GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
-        		.addComponent(panel, GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+        		.addComponent(gamePanel, GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
-        			.addComponent(panel, GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+        			.addComponent(gamePanel, GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(menuPanel, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
         );
