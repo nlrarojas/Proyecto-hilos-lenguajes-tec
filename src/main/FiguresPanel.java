@@ -16,14 +16,15 @@ public class FiguresPanel extends JPanel {
 
     public FiguresPanel(Figure[] gameObjectsArray, int width) {
         this.gameObjectsArray = gameObjectsArray;
-        setPreferredSize(new Dimension(width, width));
+        setPreferredSize(new Dimension(width, 600));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.setColor(Color.WHITE);
+        Color myColor = new Color(255, 239, 179);
+        g.setColor(myColor);
         g.fillRect(0, 0, getWidth(), getHeight());
 
         for (int i = 0; i < gameObjectsArray.length; i++) {

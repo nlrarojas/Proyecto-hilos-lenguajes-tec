@@ -28,8 +28,8 @@ public class MainView extends javax.swing.JFrame implements Runnable {
     
     private JPanel panel;
 
-    private static final int DRAWING_WIDTH = 600;
     private static final int NUMGAMEOBJECTS = 2;
+    private static final int DRAWING_WIDTH = 1100;
     private int sleepThreadTime;
     private int sleepTimePaint;
     private boolean runningThread;
@@ -73,6 +73,7 @@ public class MainView extends javax.swing.JFrame implements Runnable {
 
         JPanel menuPanel = new JPanel();
 
+
         panel = new JPanel();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -86,8 +87,7 @@ public class MainView extends javax.swing.JFrame implements Runnable {
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(panel, GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                                 .addPreferredGap(ComponentPlacement.RELATED)
-                                .addComponent(menuPanel, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
-        );
+                                .addComponent(menuPanel, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)));
         menuPanel.setLayout(null);
 
         txtSpeed = new JTextField();
