@@ -1,6 +1,7 @@
 
 package main;
 
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 
 public class InitInterfaceAndThreads implements Runnable {
     private static final int DRAWING_WIDTH = 600;
+    private static final int DRAWING_HEIGTH = 600;
     private static final int NUMGAMEOBJECTS = 30;
     private boolean runningThread;
     
@@ -28,7 +30,7 @@ public class InitInterfaceAndThreads implements Runnable {
         this.runningThread = true;
         
         for (int i = 0; i < gameObjectsArray.length; i++) {
-            gameObjectsArray[i] = new Figure(DRAWING_WIDTH);
+            gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH);
             moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], 
                                                     sleepThreadTime, 
                                                     "Thread " + i,
@@ -44,6 +46,7 @@ public class InitInterfaceAndThreads implements Runnable {
         frame = new JFrame();
         frame.setTitle("Moving Figures with different threads!");
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.setSize(new Dimension(1200, 800));
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent event) {
@@ -51,10 +54,10 @@ public class InitInterfaceAndThreads implements Runnable {
             }
         });
 
-        movingPanel = new FiguresPanel(gameObjectsArray, DRAWING_WIDTH);
+        movingPanel = new FiguresPanel(gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
         frame.getContentPane().add(movingPanel);
 
-        frame.pack();
+        //frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
 

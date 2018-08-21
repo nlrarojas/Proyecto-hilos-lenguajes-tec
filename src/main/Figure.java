@@ -15,13 +15,15 @@ public class Figure {
     private double dy;
 
     private int drawingWidth;
+    private int drawingHeight;
     private Color objectColor;
 
-    public Figure(int drawingWidth) {   
-        int range = drawingWidth - 100;
+    public Figure(int drawingWidth, int drawingHeight) {   
+        this.drawingWidth = drawingWidth - 50;
+        this.drawingHeight = drawingHeight;
         
-        x = Math.random() * range + size;
-        y = Math.random() * range + size;
+        x = (Math.random() * drawingWidth + size) + drawingWidth / 2;
+        y = Math.random() * drawingWidth + size;
         dx = 200; //(int)Math.round(Math.random());
         dy = 200;//(int)Math.round(Math.random());
         
@@ -31,10 +33,8 @@ public class Figure {
 
     //Agregar a función que modifica la trayectoria de cada hilo dependiendo de una función aleatoria
     public void move() {
-
-    	
         int lowerLimit = 0;
-        int upperLimit = drawingWidth - size;    
+        int upperLimit = drawingHeight - size;    
 
         //x += dx;
         //if (x < lowerLimit) {
@@ -42,8 +42,10 @@ public class Figure {
         //} else if (x > upperLimit) {
             //dx *= -1;
         //}
-
-        y += 1;
+        if (y <= drawingHeight) {
+            y += 1;
+        } 
+        
         if (y < lowerLimit) {
             dy *= -1;
         } else if (y > upperLimit) {
