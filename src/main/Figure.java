@@ -53,11 +53,29 @@ public class Figure {
         }
     }
 
+    //Dibuja un Cuadrado
     public void draw(Graphics g) {
         g.setColor(this.objectColor);
         g.fillRect((int) x, (int) y, size, size);
        
     }
+
+    //Dibuja un circulo
+    public void drawCircle(Graphics g)
+	{
+		g.drawOval((int)x, (int)y, size, size);
+		g.setColor(this.objectColor);
+		g.fillOval((int)x, (int)y, size+1, size+1);
+	}
+
+	//Funcion que crea un triangulo
+	public void drawTriangle(Graphics g)
+	{
+		Polygon p = new Polygon([x, x+5, x-5], [y, y+5, y-5], 3);
+		g.drawPolygon(p);
+		g.setColor(this.objectColor);
+		g.fillPolygon(p);
+	}
 
     private Color generateRandomColor() {
         int R = (int) (Math.random() * 256);
