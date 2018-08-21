@@ -3,13 +3,11 @@ package main;
 
 import javax.swing.SwingUtilities;
 
-import view.MainView;
 
 public class PanelRepaint implements Runnable {
 
     private boolean running;
     private InitInterfaceAndThreads movingSquaresMain;
-    private MainView mainViewInterfaceThreads;
     private int sleepTimePaint;
 
 
@@ -19,12 +17,7 @@ public class PanelRepaint implements Runnable {
         this.running = running;
     }
     
-    public PanelRepaint(MainView mainViewInterfaceThreads, int sleepTimePaint, boolean running) {
 
-        this.mainViewInterfaceThreads = mainViewInterfaceThreads;
-        this.sleepTimePaint = sleepTimePaint;
-        this.running = running;
-    }
 
     @Override
     public void run() {
@@ -38,11 +31,9 @@ public class PanelRepaint implements Runnable {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                if (movingSquaresMain == null) {
-                    mainViewInterfaceThreads.repaintMovingPanel();
-                } else {
+
                     movingSquaresMain.repaintMovingPanel();
-                }                
+                              
             }
         });
     }
