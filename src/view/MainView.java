@@ -50,7 +50,7 @@ public class MainView extends javax.swing.JFrame implements Runnable {
     private void init() {
         this.runningThread = true;
         for (int i = 0; i < gameObjectsArray.length; i++) {
-            gameObjectsArray[i] = new Figure(DRAWING_WIDTH);
+            gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_WIDTH);
             moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i],
                     sleepThreadTime,
                     "Thread " + i,
@@ -161,7 +161,7 @@ public class MainView extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        movingPanel = new FiguresPanel(gameObjectsArray, DRAWING_WIDTH);
+        movingPanel = new FiguresPanel(gameObjectsArray, DRAWING_WIDTH, 600);
         this.panel.add(movingPanel);
 
         for (MoveFigureThread myCurrentThread : moveObjectArray) {

@@ -11,12 +11,17 @@ import javax.swing.JPanel;
 public class FiguresPanel extends JPanel {
 
     private static final long serialVersionUID = -6291233936414618049L;
-
+    
     private Figure[] gameObjectsArray;
 
-    public FiguresPanel(Figure[] gameObjectsArray, int width) {
+    private int width;
+    private int height;
+    
+    public FiguresPanel(Figure[] gameObjectsArray, int width, int heigth) {
         this.gameObjectsArray = gameObjectsArray;
-        setPreferredSize(new Dimension(width, 600));
+        this.width = width;
+        this.height = heigth;
+        setPreferredSize(new Dimension(width, heigth));
     }
 
     @Override
@@ -25,7 +30,7 @@ public class FiguresPanel extends JPanel {
 
         Color myColor = new Color(255, 239, 179);
         g.setColor(myColor);
-        g.fillRect(0, 0, getWidth(), getHeight());
+        g.fillRect(width/2, 0, width, height);
 
         for (int i = 0; i < gameObjectsArray.length; i++) {
             gameObjectsArray[i].draw(g);
