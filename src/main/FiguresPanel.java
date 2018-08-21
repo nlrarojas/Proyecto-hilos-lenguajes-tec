@@ -21,7 +21,7 @@ public class FiguresPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+        super.paintComponent(g);   
 
         Color myColor = new Color(255, 239, 179);
         g.setColor(myColor);

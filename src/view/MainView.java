@@ -28,14 +28,13 @@ public class MainView extends javax.swing.JFrame implements Runnable {
     
     private JPanel panel;
 
-    private static final int NUMGAMEOBJECTS = 2;
+    private static final int NUMGAMEOBJECTS = 10;
     private static final int DRAWING_WIDTH = 1100;
     private int sleepThreadTime;
     private int sleepTimePaint;
     private boolean runningThread;
     private FiguresPanel movingPanel;
     private PanelRepaint panelRepaint;
-    
     private Figure[] gameObjectsArray = new Figure[NUMGAMEOBJECTS];
     private MoveFigureThread[] moveObjectArray = new MoveFigureThread[NUMGAMEOBJECTS];
 
