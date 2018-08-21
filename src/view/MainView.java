@@ -27,7 +27,7 @@ public class MainView extends javax.swing.JFrame implements Runnable {
     
     private JPanel panel;
 
-    private static final int DRAWING_WIDTH = 600;
+    private static final int DRAWING_WIDTH = 1100;
     private static final int NUMGAMEOBJECTS = 30;
     private int sleepThreadTime;
     private int sleepTimePaint;
