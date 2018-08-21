@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import main.Figure;
@@ -28,11 +29,12 @@ public class MainView extends javax.swing.JFrame implements Runnable {
     private JPanel panel;
 
     private static final int DRAWING_WIDTH = 600;
-    private static final int NUMGAMEOBJECTS = 30;
+    private static final int NUMGAMEOBJECTS = 2;
     private int sleepThreadTime;
     private int sleepTimePaint;
     private boolean runningThread;
     private FiguresPanel movingPanel;
+    private PanelRepaint panelRepaint;
     
     private Figure[] gameObjectsArray = new Figure[NUMGAMEOBJECTS];
     private MoveFigureThread[] moveObjectArray = new MoveFigureThread[NUMGAMEOBJECTS];
@@ -44,11 +46,10 @@ public class MainView extends javax.swing.JFrame implements Runnable {
         setTitle("Thread Competition");
         initComponents();
         init();
-
     }
 
     private void init() {
-
+        this.runningThread = true;
         for (int i = 0; i < gameObjectsArray.length; i++) {
             gameObjectsArray[i] = new Figure(DRAWING_WIDTH);
             moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i],
@@ -57,15 +58,17 @@ public class MainView extends javax.swing.JFrame implements Runnable {
                     this.runningThread);
         }//end for
 
-        movingPanel = new FiguresPanel(gameObjectsArray, DRAWING_WIDTH);
-        this.panel.add(movingPanel);
-
+        
+        
         setLocationRelativeTo(null);
+    }
+    
+    public void repaintMovingPanel() {
+        movingPanel.repaint();
     }
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         JPanel menuPanel = new JPanel();
@@ -150,8 +153,42 @@ public class MainView extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>                        
 
     @Override
-    public void run() {
+    public void run() {        
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent event) {
+                exitProcedure();
+            }
+        });
 
+        movingPanel = new FiguresPanel(gameObjectsArray, DRAWING_WIDTH);
+        this.panel.add(movingPanel);
+
+        for (MoveFigureThread myCurrentThread : moveObjectArray) {
+            new Thread(myCurrentThread).start();
+        } //end for
+        panelRepaint = new PanelRepaint(this, this.sleepTimePaint, this.runningThread);
+        new Thread(panelRepaint).start();
+                
+
+        this.pack();
+        this.setLocationByPlatform(true);
+        this.setVisible(true);
+
+        //START THREADS
+        for (MoveFigureThread myCurrentThread : moveObjectArray) {
+            new Thread(myCurrentThread).start();
+        } //end for
+        panelRepaint = new PanelRepaint(this, this.sleepTimePaint, this.runningThread);
+        new Thread(panelRepaint).start();
+    }
+
+    private void exitProcedure() {
+        this.runningThread = false;
+        panelRepaint.setRunning(false);
+        this.dispose();
+        System.exit(0);
     }
 
 }

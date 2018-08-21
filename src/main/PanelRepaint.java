@@ -9,12 +9,19 @@ public class PanelRepaint implements Runnable {
 
     private boolean running;
     private InitInterfaceAndThreads movingSquaresMain;
+    private MainView mainViewInterfaceThreads;
     private int sleepTimePaint;
 
 
     public PanelRepaint(InitInterfaceAndThreads initInterfaceAndThreads, int sleepTimePaint, boolean running) {
-
         this.movingSquaresMain = initInterfaceAndThreads;
+        this.sleepTimePaint = sleepTimePaint;
+        this.running = running;
+    }
+    
+    public PanelRepaint(MainView mainViewInterfaceThreads, int sleepTimePaint, boolean running) {
+
+        this.mainViewInterfaceThreads = mainViewInterfaceThreads;
         this.sleepTimePaint = sleepTimePaint;
         this.running = running;
     }
@@ -31,7 +38,11 @@ public class PanelRepaint implements Runnable {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                movingSquaresMain.repaintMovingPanel();
+                if (movingSquaresMain == null) {
+                    mainViewInterfaceThreads.repaintMovingPanel();
+                } else {
+                    movingSquaresMain.repaintMovingPanel();
+                }                
             }
         });
     }
