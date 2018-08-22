@@ -71,7 +71,10 @@ public class Figure {
 	//Funcion que crea un triangulo
 	public void drawTriangle(Graphics g)
 	{
-		Polygon p = new Polygon([x, x+5, x-5], [y, y+5, y-5], 3);
+		int[] xp = {10,15,5};
+		int[] yp= {10,15,15};
+		int n = 3;
+		Polygon p = new Polygon(xp,yp,n);
 		g.drawPolygon(p);
 		g.setColor(this.objectColor);
 		g.fillPolygon(p);
