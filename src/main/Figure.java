@@ -42,14 +42,42 @@ public class Figure {
         //} else if (x > upperLimit) {
             //dx *= -1;
         //}
-        if (y <= drawingHeight) {
+        if (y <= upperLimit) {
             y += 1;
-        } 
+            if ((int)y == upperLimit){
+            	System.out.println("Entro");
+            	y = upperLimit;
+            	while (y > 0){
+            		System.out.println("Entro 2");
+            		y -= 1;
+            	}
+            }
+        }
+        //Devuelve la figura al inicio y repite el trayecto
+        /*
+        if (y >= upperLimit){
+        	System.out.print("Entra");
+        	for (int xTemp = 0; xTemp < upperLimit; xTemp++){
+        		y -= 1;
+        	}
+        }
+        */
         
+        /*
         if (y < lowerLimit) {
             dy *= -1;
         } else if (y > upperLimit) {
             dy *= -1;
+        }
+        */
+    }
+    
+    public void moveUpward(){
+    	
+    	int upperLimit = drawingHeight - size;
+    	
+    	if (y <= drawingHeight ) {
+            y -= 1;
         }
     }
 
