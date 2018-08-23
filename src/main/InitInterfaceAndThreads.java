@@ -17,6 +17,9 @@ public class InitInterfaceAndThreads implements Runnable {
     private JTextField txtCarriles;
     private JPanel menuPanel;
     
+    private static int FRAME_WIDTH = 1200;
+    private static int FRAME_HEIGTH = 800;
+    
     private static final int DRAWING_WIDTH = 600;
     private static final int DRAWING_HEIGTH = 600;
     private static final int NUMGAMEOBJECTS = 30;
@@ -55,7 +58,7 @@ public class InitInterfaceAndThreads implements Runnable {
         frame.setLayout(null);
         frame.setTitle("Moving Figures with different threads!");
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.setSize(new Dimension(1200, 800));
+        frame.setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGTH));
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent event) {
