@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 
 
 public class InitInterfaceAndThreads implements Runnable {
+	
+//UI Variables**********************************************************************************
     private JTextField txtSpeed;
     private JTextField txtValue;
     private JTextField txtCarriles;
@@ -34,20 +36,20 @@ public class InitInterfaceAndThreads implements Runnable {
     private int sleepThreadTime;
     private int sleepTimePaint;
 
+//***************************************************************************************************
+
+    
     //constructor
     public InitInterfaceAndThreads() {
         this.sleepThreadTime = 10;
         this.sleepTimePaint = 20;
         this.runningThread = true;
-        
-        for (int i = 0; i < gameObjectsArray.length; i++) {
-            gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH);
-            moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], 
-                                                    sleepThreadTime, 
-                                                    "Thread " + i,
-                                                    this.runningThread);
-        }//end for
-    }
+        for (int i = 0; i < gameObjectsArray.length; i++) 
+        {
+        	gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH);
+            moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], sleepThreadTime, "Thread " + i,this.runningThread);
+            }
+        }
 
     /**
      * @wbp.parser.entryPoint
@@ -69,7 +71,8 @@ public class InitInterfaceAndThreads implements Runnable {
         menuPanel = new JPanel();
         menuPanel.setLayout(null);
         
-        movingPanel = new FiguresPanel(gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
+        //GridsCanvas xyz = new GridsCanvas(DRAWING_WIDTH, DRAWING_HEIGTH, numCols);
+        movingPanel = new FiguresPanel(11, gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
         frame.getContentPane().add(movingPanel).setBounds(0, 0, DRAWING_WIDTH * 2, DRAWING_HEIGTH + 20);
 
         txtSpeed = new JTextField();
