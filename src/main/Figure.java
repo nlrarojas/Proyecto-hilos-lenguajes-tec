@@ -3,6 +3,7 @@ package main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Polygon;
 import java.util.Random;
 
 public class Figure {
@@ -106,6 +107,12 @@ public class Figure {
 		g.drawPolygon(p);
 		g.setColor(this.objectColor);
 		g.fillPolygon(p);
+	}
+	
+	//Funcion que genera la barrera que impide el paso
+	public void drawBarrier(Graphics g){
+		g.setColor(this.objectColor);
+        g.fillRect(300, 100, 600, 10);
 	}
 
     private Color generateRandomColor() {
