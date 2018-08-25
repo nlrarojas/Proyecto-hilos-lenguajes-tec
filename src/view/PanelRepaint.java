@@ -1,8 +1,7 @@
-
-package main;
+package view;
 
 import javax.swing.SwingUtilities;
-
+import main.InitInterfaceAndThreads;
 
 public class PanelRepaint implements Runnable {
 
@@ -10,14 +9,11 @@ public class PanelRepaint implements Runnable {
     private InitInterfaceAndThreads movingSquaresMain;
     private int sleepTimePaint;
 
-
     public PanelRepaint(InitInterfaceAndThreads initInterfaceAndThreads, int sleepTimePaint, boolean running) {
         this.movingSquaresMain = initInterfaceAndThreads;
         this.sleepTimePaint = sleepTimePaint;
         this.running = running;
     }
-    
-
 
     @Override
     public void run() {
@@ -31,9 +27,7 @@ public class PanelRepaint implements Runnable {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-
-                    movingSquaresMain.repaintMovingPanel();
-                              
+                movingSquaresMain.repaintMovingPanel();
             }
         });
     }
@@ -42,11 +36,11 @@ public class PanelRepaint implements Runnable {
         try {
             Thread.sleep(this.sleepTimePaint);
         } catch (InterruptedException e) {
+            
         }
     }
 
     public synchronized void setRunning(boolean running) {
         this.running = running;
     }
-
 }
