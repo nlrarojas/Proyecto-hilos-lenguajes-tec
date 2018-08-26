@@ -2,8 +2,6 @@ package main;
 
 import javax.swing.SwingUtilities;
 
-import main.InitInterfaceAndThreads;
-
 /**
  *
  * @author root

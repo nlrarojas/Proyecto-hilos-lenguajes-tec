@@ -13,23 +13,22 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 public class InitInterfaceAndThreads implements Runnable {
-	
+
 //UI Variables**********************************************************************************
     private JTextField txtSpeed;
     private JTextField txtValue;
     private JTextField txtCarriles;
     private JPanel menuPanel;
-    
+
     private static int FRAME_WIDTH = 1200;
     private static int FRAME_HEIGTH = 800;
-    
+
     private static final int DRAWING_WIDTH = 600;
     private static final int DRAWING_HEIGTH = 600;
     private static final int NUMGAMEOBJECTS = 30;
     private boolean runningThread;
-    
+
     private Figure[] gameObjectsArray = new Figure[NUMGAMEOBJECTS];
     private MoveFigureThread[] moveObjectArray = new MoveFigureThread[NUMGAMEOBJECTS];
 
@@ -38,21 +37,18 @@ public class InitInterfaceAndThreads implements Runnable {
     private PanelRepaint panelRepaint;
     private int sleepThreadTime;
     private int sleepTimePaint;
-
 //***************************************************************************************************
 
-    
     //constructor
     public InitInterfaceAndThreads() {
         this.sleepThreadTime = 10;
         this.sleepTimePaint = 20;
         this.runningThread = true;
-        for (int i = 0; i < gameObjectsArray.length; i++) 
-        {
-        	gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH);
-            moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], sleepThreadTime, "Thread " + i,this.runningThread);
-            }
+        for (int i = 0; i < gameObjectsArray.length; i++) {
+            gameObjectsArray[i] = new Figure(DRAWING_WIDTH / 11, DRAWING_HEIGTH, 0);
+            moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], sleepThreadTime, "Thread " + i, this.runningThread);
         }
+    }
 
     /**
      * @wbp.parser.entryPoint
@@ -73,7 +69,7 @@ public class InitInterfaceAndThreads implements Runnable {
 
         menuPanel = new JPanel();
         menuPanel.setLayout(null);
-        
+
         //GridsCanvas xyz = new GridsCanvas(DRAWING_WIDTH, DRAWING_HEIGTH, numCols);
         movingPanel = new FiguresPanel(11, gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
         frame.getContentPane().add(movingPanel).setBounds(0, 0, DRAWING_WIDTH * 2, DRAWING_HEIGTH + 20);
@@ -92,6 +88,7 @@ public class InitInterfaceAndThreads implements Runnable {
 
         JButton btnCreate = new JButton("Create");
         btnCreate.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent arg0) {
             }
         });
@@ -106,6 +103,7 @@ public class InitInterfaceAndThreads implements Runnable {
 
         JButton btnBarrier = new JButton("Barrier");
         btnBarrier.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
             }
         });
@@ -114,6 +112,7 @@ public class InitInterfaceAndThreads implements Runnable {
 
         JButton btnRevert = new JButton("Revert");
         btnRevert.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
             }
         });
@@ -122,6 +121,7 @@ public class InitInterfaceAndThreads implements Runnable {
 
         JButton btnSimulation = new JButton("Simulation");
         btnSimulation.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
             }
         });
@@ -130,13 +130,13 @@ public class InitInterfaceAndThreads implements Runnable {
 
         JButton btnInterrupt = new JButton("Interrupt");
         btnInterrupt.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
             }
         });
         btnInterrupt.setBounds(819, 10, 100, 54);
         menuPanel.add(btnInterrupt);
-        
-        
+
         frame.getContentPane().add(menuPanel).setBounds(50, DRAWING_HEIGTH + 75, 1000, 150);
         //frame.pack();
         frame.setLocationByPlatform(true);

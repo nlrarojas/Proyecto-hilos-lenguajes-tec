@@ -34,11 +34,17 @@ public class FiguresPanel extends JPanel {
         g.fillRect(width / 2, 0, width, height);
 
         for (int i = 0; i < gameObjectsArray.length; i++) {
-            gameObjectsArray[i].draw(g);
+            gameObjectsArray[i].draw();
         }
 
         for (int i = 0; i < numCols; i++) {
             g.drawLine((i * width / numCols) + width / 2, 0, (i * width / numCols) + width / 2, height);
         }
+    }
+    
+    //Funcion que genera la barrera que impide el paso
+    public void drawBarrier(Graphics g) {
+        //g.setColor(this.objectColor);
+        //g.fillRect(300, 100, 600, 10);
     }
 }

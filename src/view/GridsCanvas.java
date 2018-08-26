@@ -2,28 +2,18 @@ package view;
 
 import java.awt.Canvas;
 import java.awt.Graphics;
+import utility.IConstants;
 
-public class GridsCanvas extends Canvas {
-
-    private int width;
-    private int height;
-    private int rows;
-    private int cols;
-
-    public GridsCanvas(int w, int h, int c) {
-        this.setSize(width = w, height = h);
-        cols = c;
+public class GridsCanvas extends Canvas implements IConstants{  
+    public GridsCanvas(int w, int h) {
+        this.setSize(w, h);        
     }
 
     @Override
     public void paint(Graphics g) {
-        int i;
-        width = getSize().width;
-        height = getSize().height;
-
-        int rowWid = width / (cols);
-        for (i = 0; i < cols; i++) {
-            g.drawLine(i * rowWid, 0, i * rowWid, height);
+        int rowWid = getWidth() / (NUMBER_OF_TRACKS);
+        for (int i = 0; i < NUMBER_OF_TRACKS; i++) {
+            g.drawLine(i * rowWid, 0, i * rowWid, getHeight());
         }
     }
 }
