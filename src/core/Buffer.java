@@ -7,5 +7,5 @@ package core;
 public interface Buffer {
     public void set(int value);  // place value into Buffer
 
-    public Figure get();              // return value from Buffer
+    public int get();              // return value from Buffer
 }

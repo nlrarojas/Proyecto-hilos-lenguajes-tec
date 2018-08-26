@@ -1,21 +1,20 @@
 package utility;
 
-import core.Figure;
-
+import core.TrackPanel;
 /**
  *
  * @author nelson
  */
 public class Constants implements IConstants{
     public static Constants constants;    
-    public static Figure[] TRACKS;
+    public TrackPanel[] tracks;
     public static int TRACK_WIDTH = 600/NUMBER_OF_TRACKS;
     public static int HEIGHT = 600;
     
     public Constants () {
-        TRACKS = new Figure[NUMBER_OF_TRACKS];
+        tracks = new TrackPanel[NUMBER_OF_TRACKS];
         for (int i = 0; i < NUMBER_OF_TRACKS; i++) {
-            TRACKS[i] = new Figure(TRACK_WIDTH, HEIGHT, i);            
+            tracks[i] = new TrackPanel();            
         }
     }
     
@@ -25,4 +24,12 @@ public class Constants implements IConstants{
         }
         return constants;
     }
+
+    public TrackPanel[] getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(TrackPanel[] tracks) {
+        this.tracks = tracks;
+    }      
 }

@@ -34,7 +34,7 @@ public class FiguresPanel extends JPanel {
         g.fillRect(width / 2, 0, width, height);
 
         for (int i = 0; i < gameObjectsArray.length; i++) {
-            gameObjectsArray[i].draw();
+            gameObjectsArray[i].draw(g);
         }
 
         for (int i = 0; i < numCols; i++) {

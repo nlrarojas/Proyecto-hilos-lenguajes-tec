@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import utility.Constants;
 
 public class InitInterfaceAndThreads implements Runnable {
 
@@ -45,7 +46,7 @@ public class InitInterfaceAndThreads implements Runnable {
         this.sleepTimePaint = 20;
         this.runningThread = true;
         for (int i = 0; i < gameObjectsArray.length; i++) {
-            gameObjectsArray[i] = new Figure(DRAWING_WIDTH / 11, DRAWING_HEIGTH, 0);
+            gameObjectsArray[i] = new Figure(Constants.getInstance().getTracks()[i], 0);
             moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], sleepThreadTime, "Thread " + i, this.runningThread);
         }
     }
