@@ -23,6 +23,7 @@ public class FigureProducerThread extends Thread implements IConstants{
         while (START_EXECUTION) {
             if (EXECUTE) {
                 Fig fig = new Fig(10, Color.yellow, null);
+                
             }
         }
     }
