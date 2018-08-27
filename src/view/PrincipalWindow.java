@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,7 +41,7 @@ public class PrincipalWindow extends JFrame implements IConstants{
         
         actionsPanel = new JPanel();    
         addActions();
-        desktopPane.add(actionsPanel).setBounds(0, TRACK_HEIGHT + 10, WINDOW_WIDTH, WINDOW_HEIGHT - (TRACK_HEIGHT + 10));        
+        desktopPane.add(actionsPanel).setBounds(0, TRACK_HEIGHT , WINDOW_WIDTH, WINDOW_HEIGHT - (TRACK_HEIGHT + 10));        
         
         for (int i = 0; i < NUMBER_OF_TRACKS; i++) {
             JToggleButton barrier = new JToggleButton();

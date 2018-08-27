@@ -1,14 +1,9 @@
 package view;
 
-import core.Figure;
+import core.Fig;
 import core.TrackPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JButton;
+import java.awt.Color;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 import utility.Constants;
 import utility.IConstants;
 
@@ -30,13 +25,10 @@ public class TracksField extends JPanel implements IConstants {
     private void init() {        
         for (int i = 0; i < Constants.getInstance().getTracks().length; i++) {
             TrackPanel panel = Constants.getInstance().getTracks()[i];
-            this.add(panel).setBounds(i*TRACK_WIDTH, 0, TRACK_PANEL_WIDTH, TRACK_HEIGHT-10);            
-            Figure figure = new Figure(panel, i);            
-            for (int j = 0; j < 10; j++) {
-                figure.move();
-                //figure.draw(panel.getGraphics());
-            }                    
-                         
+            this.add(panel).setBounds(i*TRACK_WIDTH, 0, TRACK_PANEL_WIDTH, TRACK_HEIGHT);            
+            /*for (int j = 0; j < 10; j++) {
+                panel.addFigure(new Fig(50*j, 10, Color.ORANGE, null));
+            }*/
         }                
     }
 }
