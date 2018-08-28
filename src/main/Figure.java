@@ -26,7 +26,7 @@ public class Figure {
         this.drawingWidth = drawingWidth - 100;
         this.drawingHeight = drawingHeight;
         x = generatePosition(r.nextInt(10));
-        y = Math.random() * drawingWidth + size;  
+        y = 0; 
         this.drawingWidth = drawingWidth;
         this.objectColor = generateRandomColor();
         
@@ -62,7 +62,7 @@ public class Figure {
     //Dibuja un Cuadrado
     public void draw(Graphics g) {
         g.setColor(this.objectColor);
-        g.fillRect((int) x , 0 , size, size);
+        g.fillRect((int) x , (int) y  , size, size);
        
     }
 
