@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import util.IConst;
 
 
 public class InitInterfaceAndThreads implements Runnable {
@@ -135,11 +137,21 @@ public class InitInterfaceAndThreads implements Runnable {
         btnSimulation.setBounds(628, 41, 120, 23);
         menuPanel.add(btnSimulation);
         
-        JButton btnInterrupt = new JButton("Interrupt");
+        JToggleButton btnInterrupt = new JToggleButton("Interrupt");
         btnInterrupt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                starThreads(Integer.parseInt(txtSpeed.getText()));
-               		
+                    if (btnInterrupt.isSelected()) {    
+                        IConst.EXECUTE = true; 
+                        if (!IConst.STARTED) {
+                            starThreads(Integer.parseInt(txtSpeed.getText()));                            
+                            IConst.STARTED = true;
+                        }                                                
+                        System.out.println("1");
+                    } else {                        
+                        IConst.EXECUTE = false;   
+                        System.out.println("2");
+                        System.out.println(IConst.EXECUTE);
+                    }                    
         	}            	
             
         });
@@ -173,6 +185,7 @@ public class InitInterfaceAndThreads implements Runnable {
         this.runningThread = false;
         frame.dispose();
         System.exit(0);
+        IConst.START_EXECUTION = false;
     }
 
     public void repaintMovingPanel() {
