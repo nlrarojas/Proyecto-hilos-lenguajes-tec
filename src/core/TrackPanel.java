@@ -37,7 +37,7 @@ public class TrackPanel extends JPanel implements IConstants {
             g.setColor(figures.get(i).getColor());
             g.fillRect((TRACK_WIDTH - SIZE_FIGURE)/2, figures.get(i).getyPosition(), SIZE_FIGURE, SIZE_FIGURE);
             if (figures.get(i).getyPosition() > TRACK_HEIGHT) {
-                figures.remove(figures.get(i));
+                //figures.remove(figures.get(i));
             }
         }
     }
@@ -48,5 +48,6 @@ public class TrackPanel extends JPanel implements IConstants {
 
     public void addFigure(Fig figure) {
         figures.add(figure);
+        System.out.println(getNumberOfFigures());
     }
 }

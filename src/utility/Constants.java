@@ -19,8 +19,9 @@ public class Constants implements IConstants{
     }
     
     public static Constants getInstance() {
-        if (constants == null) {
-            return new Constants();
+        if (constants == null) {            
+            constants =  new Constants();            
+            return constants;
         }
         return constants;
     }

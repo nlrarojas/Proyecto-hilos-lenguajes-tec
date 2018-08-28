@@ -1,5 +1,6 @@
 package view;
 
+import controller.FigureProducerThread;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,6 +56,8 @@ public class PrincipalWindow extends JFrame implements IConstants{
             });            
             desktopPane.add(barrier).setBounds((i*TRACK_WIDTH)+(WINDOW_WIDTH-TRACK_PANEL_WIDTH)/2, TRACK_HEIGHT/2,TRACK_WIDTH, 30);   
         }
+        FigureProducerThread fpt = new FigureProducerThread(null);
+        fpt.start();
     }
 
     private void addActions() {
