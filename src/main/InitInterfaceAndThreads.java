@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Random;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -157,6 +159,35 @@ public class InitInterfaceAndThreads implements Runnable {
         JButton btnSimulation = new JButton("Simulation");
         btnSimulation.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	
+            	
+            	gameObjectsArray = new Figure[Integer.parseInt(txtValue.getText())];
+            	moveObjectArray = new MoveFigureThread[Integer.parseInt(txtValue.getText())];
+            	
+            	for (int i = 0; i < gameObjectsArray.length; i++) 
+                {
+            		Random r = new Random();
+            		int Result = r.nextInt(3)+1;
+            		if (Result == 1) {
+                	gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH,80);
+                	moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i],gameObjectsArray[i].getTypeFigure() , "Thread " + i,true);
+            		}else if(Result == 2) 
+            		{
+            			gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH,40);
+                    	moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i],gameObjectsArray[i].getTypeFigure() , "Thread " + i,true);
+            		}else 
+            		{
+            			gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH,10);
+                    	moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i],gameObjectsArray[i].getTypeFigure() , "Thread " + i,true);
+            		}
+                		 
+						
+					} 
+
+                movingPanel = new FiguresPanel(11, gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
+                frame.getContentPane().add(movingPanel).setBounds(0,0 , DRAWING_WIDTH * 2, DRAWING_HEIGTH + 20);
+                starThreads(10); 
+            	
             }
         });
         btnSimulation.setBounds(628, 41, 120, 23);
