@@ -9,6 +9,8 @@ import java.util.Random;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
+import util.IConst;
+
 public class Figure {
 
 //Figure variables**********************************************************
@@ -37,6 +39,13 @@ public class Figure {
     public void move() {
         int upperLimit = drawingHeight - size;  
         if (y <= upperLimit) {
+        	
+        	if (IConst.START_EXECUTION= true) {
+        		while (y < upperLimit ){
+            		y += 1;
+            	}
+				
+			}
             y += 1;
             if ((int)y == upperLimit){
 

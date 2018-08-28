@@ -121,9 +121,12 @@ public class InitInterfaceAndThreads implements Runnable {
         btnBarrier.setBounds(464, 10, 89, 23);
         menuPanel.add(btnBarrier);
 
-        JButton btnRevert = new JButton("Revert");
+        JToggleButton btnRevert = new JToggleButton("Revert");
         btnRevert.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	if (btnRevert.isSelected()) {
+					
+				}
             }
         });
         btnRevert.setBounds(628, 10, 120, 23);
@@ -146,15 +149,12 @@ public class InitInterfaceAndThreads implements Runnable {
                             starThreads(Integer.parseInt(txtSpeed.getText()));                            
                             IConst.STARTED = true;
                         }                                                
-                        System.out.println("1");
+                       
                     } else {                        
-                        IConst.EXECUTE = false;   
-                        System.out.println("2");
-                        System.out.println(IConst.EXECUTE);
+                        IConst.EXECUTE = false;    
                     }                    
-        	}            	
-            
-        });
+                  }});
+        
         
         btnInterrupt.setBounds(819, 10, 100, 54);
         menuPanel.add(btnInterrupt);
