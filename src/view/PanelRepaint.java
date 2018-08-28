@@ -5,6 +5,7 @@ import main.InitInterfaceAndThreads;
 
 public class PanelRepaint implements Runnable {
 
+//Variables used in UI 
     private boolean running;
     private InitInterfaceAndThreads movingSquaresMain;
     private int sleepTimePaint;
