@@ -4,8 +4,9 @@ package main;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import util.IConst;
 
-public class MoveFigureThread implements Runnable{
+public class MoveFigureThread implements Runnable {
     private boolean running;
     
     private Figure myObject;
@@ -21,22 +22,18 @@ public class MoveFigureThread implements Runnable{
 
     @Override
     public void run() {
-        while(running){
-        	//While thread is running, call move function in figure
-            myObject.move();
-            
-            try {
-                Thread.sleep(this.sleepTime);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(MoveFigureThread.class.getName()).log(Level.SEVERE, null, ex);
+        while(IConst.START_EXECUTION) {
+            if (IConst.EXECUTE) {
+                    //While thread is running, call move function in figure
+                myObject.move();
+
+                try {
+                    Thread.sleep(this.sleepTime);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MoveFigureThread.class.getName()).log(Level.SEVERE, null, ex);
+                }            
             }
-            
         }//end while
-    }
-    
-    private void stopThread() 
-    {
-    	Thread.interrupted();
     }
     
     public synchronized void setRunning(boolean running) {
