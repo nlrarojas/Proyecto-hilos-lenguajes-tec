@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -12,6 +13,8 @@ import javax.swing.JTextField;
 
 
 public class InitInterfaceAndThreads implements Runnable {
+	
+//UI Variables**********************************************************************************
     private JTextField txtSpeed;
     private JTextField txtValue;
     private JTextField txtCarriles;
@@ -27,27 +30,36 @@ public class InitInterfaceAndThreads implements Runnable {
     
     private Figure[] gameObjectsArray = new Figure[NUMGAMEOBJECTS];
     private MoveFigureThread[] moveObjectArray = new MoveFigureThread[NUMGAMEOBJECTS];
+    //Tiene que ser el numero de carriles
+    private Car[] gameCars = new Car[NUMGAMEOBJECTS];
+    private MoveCarThread[] moveCars = new MoveCarThread[NUMGAMEOBJECTS];
 
     private JFrame frame;
     private FiguresPanel movingPanel;
     private PanelRepaint panelRepaint;
     private int sleepThreadTime;
     private int sleepTimePaint;
+    
+    
 
+//***************************************************************************************************
+
+    
     //constructor
     public InitInterfaceAndThreads() {
         this.sleepThreadTime = 10;
         this.sleepTimePaint = 20;
         this.runningThread = true;
-        
-        for (int i = 0; i < gameObjectsArray.length; i++) {
-            gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH);
-            moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], 
-                                                    sleepThreadTime, 
-                                                    "Thread " + i,
-                                                    this.runningThread);
-        }//end for
-    }
+        double tempX = 300;
+        for (int i = 0; i < gameObjectsArray.length; i++) 
+        {
+        	gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH);
+            moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], sleepThreadTime, "Thread " + i,this.runningThread);
+            //ahora definimos las imagenes de los carros
+            gameCars[i] = new Car(DRAWING_WIDTH, DRAWING_HEIGTH);
+            moveCars[i] = new MoveCarThread(gameCars[i], sleepThreadTime, "Thread " + i,this.runningThread);
+            }
+        }
 
     /**
      * @wbp.parser.entryPoint
@@ -69,7 +81,8 @@ public class InitInterfaceAndThreads implements Runnable {
         menuPanel = new JPanel();
         menuPanel.setLayout(null);
         
-        movingPanel = new FiguresPanel(gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
+        //GridsCanvas xyz = new GridsCanvas(DRAWING_WIDTH, DRAWING_HEIGTH, numCols);
+        movingPanel = new FiguresPanel(gameObjectsArray, gameCars,DRAWING_WIDTH, DRAWING_HEIGTH);
         frame.getContentPane().add(movingPanel).setBounds(0, 0, DRAWING_WIDTH * 2, DRAWING_HEIGTH + 20);
 
         txtSpeed = new JTextField();
@@ -101,6 +114,7 @@ public class InitInterfaceAndThreads implements Runnable {
         JButton btnBarrier = new JButton("Barrier");
         btnBarrier.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	Graphics g = movingPanel.getGraphics();
             }
         });
         btnBarrier.setBounds(464, 10, 89, 23);
@@ -138,6 +152,10 @@ public class InitInterfaceAndThreads implements Runnable {
 
         //START THREADS
         for (MoveFigureThread myCurrentThread : moveObjectArray) {
+            new Thread(myCurrentThread).start();
+        } //end for
+        //START THREADS Cars
+        for (MoveCarThread myCurrentThread : moveCars) {
             new Thread(myCurrentThread).start();
         } //end for
         panelRepaint = new PanelRepaint(this, this.sleepTimePaint, this.runningThread);

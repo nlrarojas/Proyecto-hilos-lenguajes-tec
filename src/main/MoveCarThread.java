@@ -1,17 +1,16 @@
 package main;
 
-//import core.Figure;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MoveFigureThread implements Runnable{
+public class MoveCarThread implements Runnable{
     private boolean running;
     
-    private Figure myObject;
+    private Car myObject;
     private int sleepTime;
     private String name;
     
-    public MoveFigureThread(Figure obj, int sleepTime, String name, boolean running){
+    public MoveCarThread(Car obj, int sleepTime, String name, boolean running){
         this.myObject = obj;
         this.sleepTime = sleepTime;
         this.running = running;
@@ -36,4 +35,5 @@ public class MoveFigureThread implements Runnable{
     public synchronized void setRunning(boolean running) {
         this.running = running;
     }
+
 }
