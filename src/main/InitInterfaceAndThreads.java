@@ -39,7 +39,6 @@ public class InitInterfaceAndThreads implements Runnable {
     private MoveFigureThread[] moveObjectArray;
     private FiguresPanel movingPanel;
     private PanelRepaint panelRepaint;
-    private FiguresPanelnterrupt movingPanelInt;
 //***************************************************************************************************
 
     
@@ -99,9 +98,6 @@ public class InitInterfaceAndThreads implements Runnable {
                     }
                 movingPanel = new FiguresPanel(11, gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
                 frame.getContentPane().add(movingPanel).setBounds(0,0 , DRAWING_WIDTH * 2, DRAWING_HEIGTH + 20);
-                //Star Threads
-               // starThreads(Integer.parseInt(txtSpeed.getText()));
-            	
             }
         });
         btnCreate.setBounds(197, 41, 182, 23);
@@ -143,8 +139,7 @@ public class InitInterfaceAndThreads implements Runnable {
         btnInterrupt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                 starThreads(Integer.parseInt(txtSpeed.getText()));
-               
-        		
+               		
         	}            	
             
         });

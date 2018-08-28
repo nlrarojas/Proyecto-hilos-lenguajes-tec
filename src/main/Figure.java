@@ -21,12 +21,12 @@ public class Figure {
 //***************************************************************************
       
     
-    public Figure(int drawingWidth, int drawingHeight) {   
+    public Figure(int drawingWidth, int drawingHeight) {
+    	Random r = new Random();
         this.drawingWidth = drawingWidth - 100;
         this.drawingHeight = drawingHeight;
-        x = (Math.random() * drawingWidth + size) + drawingWidth / 2;
-        y = Math.random() * drawingWidth + size;
-       
+        x = generatePosition(r.nextInt(10));
+        y = Math.random() * drawingWidth + size;  
         this.drawingWidth = drawingWidth;
         this.objectColor = generateRandomColor();
         
@@ -39,10 +39,9 @@ public class Figure {
         if (y <= upperLimit) {
             y += 1;
             if ((int)y == upperLimit){
-            	//System.out.println("Entro");
+
             	y = upperLimit;
             	while (y > 0){
-            		//System.out.println("Entro 2");
             		y -= 1;
             	}
             }
@@ -59,19 +58,11 @@ public class Figure {
         }
     }
 
+    
     //Dibuja un Cuadrado
     public void draw(Graphics g) {
-    	Random r = new Random();
         g.setColor(this.objectColor);
-        //g.fillRect((int) x, (int) y, size, size);
-        g.fillRect(generatePosition(r.nextInt(10)), 0, size, size);
-       
-    }
-    public void drawInt(Graphics g) {
-    	Random r = new Random();
-        g.setColor(this.objectColor);
-        //g.fillRect((int) x, (int) y, size, size);
-        g.fillRect(0, (int) y , size, size);
+        g.fillRect((int) x , 0 , size, size);
        
     }
 
