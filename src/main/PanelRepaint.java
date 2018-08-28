@@ -6,6 +6,7 @@ import javax.swing.SwingUtilities;
 
 public class PanelRepaint implements Runnable {
 
+//Variables used in UI 
     private boolean running;
     private InitInterfaceAndThreads movingSquaresMain;
     private int sleepTimePaint;
@@ -48,5 +49,7 @@ public class PanelRepaint implements Runnable {
     public synchronized void setRunning(boolean running) {
         this.running = running;
     }
+    
+
 
 }

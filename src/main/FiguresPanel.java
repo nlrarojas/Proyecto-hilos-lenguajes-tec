@@ -13,7 +13,6 @@ public class FiguresPanel extends JPanel {
     private static final long serialVersionUID = -6291233936414618049L;
     
     private Figure[] gameObjectsArray;
-
     private int width;
     private int height;
     private int numCols;
@@ -38,13 +37,13 @@ public class FiguresPanel extends JPanel {
             gameObjectsArray[i].draw(g);
         }
         
-        for (int i = 0; i < numCols; i++)
-    	      g.drawLine((i * width/numCols)+width/2, 0, (i * width/numCols)+width/2, height);
-        
-       
-        
+        for (int i = 0; i < numCols; i++) 
+        {
+        	g.drawLine((i * width/numCols)+width/2, 0, (i * width/numCols)+width/2, height);
+        	g.setColor(Color.BLACK);
+        }
+    	       
+        	  
   	  }
-        
-    
 
 }

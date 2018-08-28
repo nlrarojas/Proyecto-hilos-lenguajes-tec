@@ -22,16 +22,21 @@ public class MoveFigureThread implements Runnable{
     @Override
     public void run() {
         while(running){
+        	//While thread is running, call move function in figure
             myObject.move();
             
             try {
-                //System.out.println("Thread name: " + this.name);
                 Thread.sleep(this.sleepTime);
             } catch (InterruptedException ex) {
                 Logger.getLogger(MoveFigureThread.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }//end while
+    }
+    
+    private void stopThread() 
+    {
+    	Thread.interrupted();
     }
     
     public synchronized void setRunning(boolean running) {
