@@ -27,7 +27,7 @@ public class MoveFigureThread implements Runnable{
             
             try {
                 Thread.sleep(this.sleepTime);
-            } catch (InterruptedException ex) {
+            } catch (InterruptedException ex) {         
                 Logger.getLogger(MoveFigureThread.class.getName()).log(Level.SEVERE, null, ex);
             }
             
