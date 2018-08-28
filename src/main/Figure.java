@@ -20,10 +20,11 @@ public class Figure {
     private int drawingWidth;
     private int drawingHeight;
     private Color objectColor;
+    private int typeFigure;
 //***************************************************************************
       
     
-    public Figure(int drawingWidth, int drawingHeight) {
+    public Figure(int drawingWidth, int drawingHeight, int type) {
     	Random r = new Random();
         this.drawingWidth = drawingWidth - 100;
         this.drawingHeight = drawingHeight;
@@ -31,11 +32,20 @@ public class Figure {
         y = 0; 
         this.drawingWidth = drawingWidth;
         this.objectColor = generateRandomColor();
+        this.typeFigure = type;
         
         
     }
 
-    //Function that moves threads downward
+    public int getTypeFigure() {
+		return typeFigure;
+	}
+
+	public void setTypeFigure(int typeFigure) {
+		this.typeFigure = typeFigure;
+	}
+
+	//Function that moves threads downward
     public void move() {
         int upperLimit = drawingHeight - size;  
         if (y <= upperLimit) {
