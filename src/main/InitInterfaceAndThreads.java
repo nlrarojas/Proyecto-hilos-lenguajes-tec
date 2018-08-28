@@ -187,5 +187,10 @@ public class InitInterfaceAndThreads implements Runnable {
     public void repaintMovingPanel() {
         movingPanel.repaint();
     }
+    
+    public void positionByLine() 
+    {
+    	
+    }
 
 }
