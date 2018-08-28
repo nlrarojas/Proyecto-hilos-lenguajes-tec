@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import utility.Constants;
 
 public class InitInterfaceAndThreads implements Runnable {
 
@@ -21,7 +20,6 @@ public class InitInterfaceAndThreads implements Runnable {
     private JTextField txtValue;
     private JTextField txtCarriles;
     private JPanel menuPanel;
-
 
     private static int FRAME_WIDTH = 1200;
     private static int FRAME_HEIGTH = 800;
@@ -40,20 +38,19 @@ public class InitInterfaceAndThreads implements Runnable {
 
     private int stateButton;
 //**********************************************************************************************
-    
-//Threads Variables*****************************************************************************
 
+//Threads Variables*****************************************************************************
     private int sleepThreadTime;
     private int sleepTimePaint;
 //***************************************************************************************************
-
 
     //constructor
     public InitInterfaceAndThreads() {
         this.sleepThreadTime = 30;
         this.sleepTimePaint = 30;
-        this.runningThread = true;        
+        this.runningThread = true;
     }
+
     /**
      * @wbp.parser.entryPoint
      */
@@ -91,27 +88,23 @@ public class InitInterfaceAndThreads implements Runnable {
         txtValue.setColumns(10);
 
 //Button that create the game frame and call starThreads**********************************************************
-        
         JButton btnCreate = new JButton("Create");
         btnCreate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                gameObjectsArray = new Figure[Integer.parseInt(txtValue.getText())];
+                moveObjectArray = new MoveFigureThread[Integer.parseInt(txtValue.getText())];
 
-			public void actionPerformed(ActionEvent arg0) {
-            	gameObjectsArray = new Figure[Integer.parseInt(txtValue.getText())];
-            	moveObjectArray = new MoveFigureThread[Integer.parseInt(txtValue.getText())];
-            	
-            	for (int i = 0; i < gameObjectsArray.length; i++) 
-                {
-                	gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH);
-                    moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], sleepThreadTime, "Thread " + i,true);
-                    }
+                for (int i = 0; i < gameObjectsArray.length; i++) {
+                    gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH);
+                    moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], sleepThreadTime, "Thread " + i, true);
+                }
                 movingPanel = new FiguresPanel(11, gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
-                frame.getContentPane().add(movingPanel).setBounds(0,0 , DRAWING_WIDTH * 2, DRAWING_HEIGTH + 20);
+                frame.getContentPane().add(movingPanel).setBounds(0, 0, DRAWING_WIDTH * 2, DRAWING_HEIGTH + 20);
             }
         });
         btnCreate.setBounds(197, 41, 182, 23);
         menuPanel.add(btnCreate);
 //*************************************************************************************************************
-        
 
         txtCarriles = new JTextField();
         txtCarriles.setText("Carriles");
@@ -145,37 +138,35 @@ public class InitInterfaceAndThreads implements Runnable {
         });
         btnSimulation.setBounds(628, 41, 120, 23);
         menuPanel.add(btnSimulation);
-        
+
         JButton btnInterrupt = new JButton("Interrupt");
         btnInterrupt.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 starThreads(Integer.parseInt(txtSpeed.getText()));
-               		
-        	}            	           
+
+            }
         });
-        
+
         btnInterrupt.setBounds(819, 10, 100, 54);
         menuPanel.add(btnInterrupt);
         stateButton = 1;
-                
+
         frame.getContentPane().add(menuPanel).setBounds(50, DRAWING_HEIGTH + 75, 1000, 150);
         //frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
     }
-    
-    
+
     //Function that initialize the threads 
-    public void starThreads(int speed) 
-    {
-    	for (MoveFigureThread myCurrentThread : moveObjectArray) {
+    public void starThreads(int speed) {
+        for (MoveFigureThread myCurrentThread : moveObjectArray) {
             new Thread(myCurrentThread).start();
         } //end for
-    	 //this.sleepThreadTime = speed;
-         //this.sleepTimePaint = speed;
+        //this.sleepThreadTime = speed;
+        //this.sleepTimePaint = speed;
         panelRepaint = new PanelRepaint(this, speed, this.runningThread);
         new Thread(panelRepaint).start();
-    	
+
     }
 
     private void exitProcedure() {
@@ -187,10 +178,8 @@ public class InitInterfaceAndThreads implements Runnable {
     public void repaintMovingPanel() {
         movingPanel.repaint();
     }
-    
-    public void positionByLine() 
-    {
-    	
-    }
 
+    public void positionByLine() {
+
+    }
 }
