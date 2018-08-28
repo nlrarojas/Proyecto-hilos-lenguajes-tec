@@ -40,20 +40,12 @@ public class Figure {
         int upperLimit = drawingHeight - size;  
         if (y <= upperLimit) {
         	
-        	if (IConst.START_EXECUTION= true) {
-        		while (y < upperLimit ){
-            		y += 1;
-            	}
-				
+        	if (IConst.REVERT_THREAD) {
+        		y-=1;
+			}else 
+			{
+				y += 1;
 			}
-            y += 1;
-            if ((int)y == upperLimit){
-
-            	y = upperLimit;
-            	while (y > 0){
-            		y -= 1;
-            	}
-            }
         }
 
     }

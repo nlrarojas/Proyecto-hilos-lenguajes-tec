@@ -46,8 +46,6 @@ public class InitInterfaceAndThreads implements Runnable {
     
 //constructor*******************************
     public InitInterfaceAndThreads() {
-    	 this.sleepThreadTime = 30;
-         this.sleepTimePaint = 30;
          this.runningThread = true;
 
         }
@@ -100,6 +98,7 @@ public class InitInterfaceAndThreads implements Runnable {
                     }
                 movingPanel = new FiguresPanel(11, gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
                 frame.getContentPane().add(movingPanel).setBounds(0,0 , DRAWING_WIDTH * 2, DRAWING_HEIGTH + 20);
+                //starThreads(Integer.parseInt(txtSpeed.getText()));
             }
         });
         btnCreate.setBounds(197, 41, 182, 23);
@@ -125,8 +124,13 @@ public class InitInterfaceAndThreads implements Runnable {
         btnRevert.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	if (btnRevert.isSelected()) {
+            		IConst.REVERT_THREAD = true;
 					
 				}
+            	else 
+            	{
+            		IConst.REVERT_THREAD = false;
+            	}
             }
         });
         btnRevert.setBounds(628, 10, 120, 23);
@@ -174,8 +178,8 @@ public class InitInterfaceAndThreads implements Runnable {
     	for (MoveFigureThread myCurrentThread : moveObjectArray) {
             new Thread(myCurrentThread).start();
         } //end for
-    	 //this.sleepThreadTime = speed;
-         //this.sleepTimePaint = speed;
+    	 this.sleepThreadTime = speed;
+         this.sleepTimePaint = speed;
         panelRepaint = new PanelRepaint(this, speed, this.runningThread);
         new Thread(panelRepaint).start();
     	
@@ -186,6 +190,7 @@ public class InitInterfaceAndThreads implements Runnable {
         frame.dispose();
         System.exit(0);
         IConst.START_EXECUTION = false;
+        IConst.REVERT_THREAD = false;
     }
 
     public void repaintMovingPanel() {
