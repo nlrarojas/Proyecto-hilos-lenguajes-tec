@@ -21,7 +21,7 @@ public class FigThread implements Runnable, IConstants {
     public void run() {
         while (EXECUTE) {
             try {
-                figure.setyPosition(figure.getyPosition() + figure.getSpeed());
+                figure.setyPosition(figure.getyPosition() + figure.getMovement());
                 Thread.sleep(movingTime);
             } catch (InterruptedException ex) {
                 Logger.getLogger(FigThread.class.getName()).log(Level.SEVERE, null, ex);

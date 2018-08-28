@@ -1,10 +1,10 @@
 package controller;
 
-import core.Buffer;
 import core.Fig;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 import utility.Constants;
 import utility.IConstants;
 
@@ -12,22 +12,20 @@ import utility.IConstants;
  *
  * @author nelson
  */
-public class FigureProducerThread extends Thread implements IConstants {
-
-    private Buffer sharedTracks;
-
-    public FigureProducerThread(Buffer sharedTracks) {
+public class FigureProducerThread extends Thread implements IConstants {        
+    
+    public FigureProducerThread(JPanel panel) {
         super("Producer");
-        this.sharedTracks = sharedTracks;
+        for (int i = 0; i < NUMBER_OF_TRACKS; i++) {
+            Constants.getInstance().getTracks()[i].setBarrier(panel);
+        }        
     }
 
     @Override
     public void run() {        
         while (START_EXECUTION) {
-            if (EXECUTE) {
-                Fig fig = new Fig(10, Color.yellow, null);
-                trackWithLessFigures(fig);
-                System.out.println("new figure");
+            if (EXECUTE) {                
+                trackWithLessFigures();                                                
             }
             try {
                 Thread.sleep(3000);
@@ -37,7 +35,7 @@ public class FigureProducerThread extends Thread implements IConstants {
         }
     }
 
-    public void trackWithLessFigures(Fig fig) {
+    public void trackWithLessFigures() {
         int temp = Constants.getInstance().getTracks()[0].getNumberOfFigures();
         int position = 0;
         for (int i = 1; i < Constants.getInstance().getTracks().length; i++) {
@@ -46,9 +44,8 @@ public class FigureProducerThread extends Thread implements IConstants {
                 position = i;
             }
         }
-        System.out.println(position);
-        Constants.getInstance().getTracks()[position].addFigure(fig);
-        Constants.getInstance().getTracks()[position].addFigure(fig);
-        Constants.getInstance().getTracks()[position].repaint();
+        Fig fig = new Fig(250, 5, Color.ORANGE, null, Constants.getInstance().getTracks()[position]);
+        Constants.getInstance().getTracks()[position].addFigure(fig); 
+        fig.start();        
     }
 }
