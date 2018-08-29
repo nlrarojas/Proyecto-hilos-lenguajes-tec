@@ -31,9 +31,8 @@ public class TrackPanel extends JPanel {
         g.fillRect(1, 2, RegularConstants.TRACK_PANEL_WIDTH / RegularConstants.NUMBER_OF_TRACKS - 2, RegularConstants.TRACK_HEIGHT - 17);
 
         g.setColor(Color.red);
-        g.fillRect(0, RegularConstants.TRACK_HEIGHT / 2, RegularConstants.TRACK_WIDTH, 30);
-
-        for (int i = 0; i < figures.size(); i++) {
+        g.fillRect(0, RegularConstants.TRACK_HEIGHT / 2, RegularConstants.TRACK_WIDTH, 30);        
+        for (int i = 0; i < figures.size(); i++) {            
             if (barrierActivated) {
                 if (figures.get(i).getyPosition() + figures.get(i).getMovement() > (RegularConstants.TRACK_HEIGHT / 2)
                         && figures.get(i).getyPosition() + figures.get(i).getMovement() < (RegularConstants.TRACK_HEIGHT / 2) + 30) {
@@ -55,9 +54,7 @@ public class TrackPanel extends JPanel {
                         g.drawPolygon(p);
                         g.setColor(figures.get(i).getColor());
                         g.fillPolygon(p);
-
                     }
-
                 }
             } else {
                 figures.get(i).setBarrierActivated(false);

@@ -42,7 +42,7 @@ public class FigureProducerThread extends Thread {
                 position = i;
             }
         }
-        Random r = new Random();;
+        Random r = new Random();
         int result = r.nextInt(3)+1;
         Fig fig = new Fig(result*10, 5, Color.ORANGE, null, Constants.getInstance().getTracks()[position]);
         Constants.getInstance().getTracks()[position].addFigure(fig);

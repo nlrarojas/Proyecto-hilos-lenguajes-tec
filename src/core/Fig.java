@@ -11,6 +11,7 @@ import utility.RegularConstants;
  * @author nelson
  */
 public class Fig extends Thread {
+
     private int yPosition;
     private int movement;
     private int speed;
@@ -19,7 +20,7 @@ public class Fig extends Thread {
     private boolean endExecution;
     private TrackPanel trackPanel;
     private boolean barrierActivated;
-    
+
     public Fig(int speed, int movement, Color color, Icon image, TrackPanel trackPanel) {
         this.yPosition = RegularConstants.STARTING_TRACK_FIGURE_POSITION;
         this.movement = 1;
@@ -34,16 +35,15 @@ public class Fig extends Thread {
     @Override
     public void run() {
         while (RegularConstants.START_EXECUTION) {
-            if (RegularConstants.EXECUTE) { 
+            if (RegularConstants.EXECUTE) {
                 if (!barrierActivated) {
-                	if (RegularConstants.REVERT_THREAD) {
-                		yPosition -= movement;
+                    if (RegularConstants.REVERT_THREAD) {
+                        yPosition -= movement;
                         trackPanel.repaint();
-					}else 
-					{
-						yPosition += movement;
-	                    trackPanel.repaint();
-					}                   
+                    } else {                        
+                        yPosition += movement;
+                        trackPanel.repaint();
+                    }
                 }
                 try {
                     Thread.sleep(speed);
@@ -56,15 +56,15 @@ public class Fig extends Thread {
             }
         }
     }
-    
-    public void endExecutionThread () {
+
+    public void endExecutionThread() {
         endExecution = true;
     }
-    
+
     public Fig(int speed) {
         this.yPosition = RegularConstants.STARTING_TRACK_FIGURE_POSITION;
         this.movement = speed;
-    }        
+    }
 
     public int getyPosition() {
         return yPosition;
@@ -80,7 +80,7 @@ public class Fig extends Thread {
 
     public void setMovement(int movement) {
         this.movement = movement;
-    }     
+    }
 
     public Color getColor() {
         return color;
@@ -96,7 +96,7 @@ public class Fig extends Thread {
 
     public void setImage(Icon image) {
         this.image = image;
-    }    
+    }
 
     public int getSpeed() {
         return speed;
@@ -104,9 +104,9 @@ public class Fig extends Thread {
 
     public void setSpeed(int speed) {
         this.speed = speed;
-    }        
+    }
 
     void setBarrierActivated(boolean barrier) {
-        this.barrierActivated = barrier;        
+        this.barrierActivated = barrier;
     }
 }

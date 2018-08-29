@@ -31,7 +31,8 @@ public class CreateFigures {
             int position = random.nextInt(RegularConstants.NUMBER_OF_TRACKS);
             Fig fig = new Fig(speed * 250, 5, Color.ORANGE, null, Constants.getInstance().getTracks()[position]);
             Constants.getInstance().getTracks()[position].addFigure(fig);
-            fig.start();            
+            fig.start(); 
+            System.out.println(Constants.getInstance().getTracks()[position].getNumberOfFigures());
         }
     }
 }
