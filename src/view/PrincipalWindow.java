@@ -166,9 +166,7 @@ public class PrincipalWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 iterruptExecution(btnInterrupt.isSelected());
-                if (btnInterrupt.isSelected()) {
 
-                }
             }
         });
 
@@ -202,5 +200,6 @@ public class PrincipalWindow extends JFrame {
 
     private void iterruptExecution(boolean selected) {
         RegularConstants.EXECUTE = !selected;
+       
     }
 }
