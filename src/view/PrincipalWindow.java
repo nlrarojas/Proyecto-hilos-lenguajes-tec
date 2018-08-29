@@ -39,6 +39,8 @@ public class PrincipalWindow extends JFrame {
     private JTextField txtValue;
     private JCheckBox chckBoxFigureType;
 
+    private FigureProducerThread fpt;
+    
     public PrincipalWindow() {
         init();
     }
@@ -194,7 +196,7 @@ public class PrincipalWindow extends JFrame {
     }
 
     private void startSimulation() {
-        FigureProducerThread fpt = new FigureProducerThread();
+        fpt = new FigureProducerThread();
         fpt.start();
     }
 
