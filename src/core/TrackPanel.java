@@ -79,7 +79,7 @@ public class TrackPanel extends JPanel {
                     g.fillPolygon(p);
 
                 }
-                if ((figures.get(i).getyPosition() + figures.get(i).getMovement()) > (RegularConstants.TRACK_HEIGHT - 30)) {
+                if ((figures.get(i).getyPosition() + figures.get(i).getMovement()) > (RegularConstants.TRACK_HEIGHT - 30) || (figures.get(i).getyPosition() + figures.get(i).getMovement()) < 0 ) {
                     figures.get(i).endExecutionThread();
                     figures.remove(figures.get(i));
                 }
