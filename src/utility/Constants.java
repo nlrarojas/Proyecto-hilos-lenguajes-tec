@@ -5,15 +5,15 @@ import core.TrackPanel;
  *
  * @author nelson
  */
-public class Constants implements IConstants{
+public class Constants {
     public static Constants constants;    
     public TrackPanel[] tracks;
-    public static int TRACK_WIDTH = 600/NUMBER_OF_TRACKS;
+    public static int TRACK_WIDTH = 600/RegularConstants.NUMBER_OF_TRACKS;
     public static int HEIGHT = 600;
     
     public Constants () {
-        tracks = new TrackPanel[NUMBER_OF_TRACKS];
-        for (int i = 0; i < NUMBER_OF_TRACKS; i++) {
+        tracks = new TrackPanel[RegularConstants.NUMBER_OF_TRACKS];
+        for (int i = 0; i < RegularConstants.NUMBER_OF_TRACKS; i++) {
             tracks[i] = new TrackPanel();            
         }
     }

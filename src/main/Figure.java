@@ -6,10 +6,9 @@ import java.awt.Polygon;
 import java.util.ArrayList;
 import java.util.Random;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import util.IConst;
-import utility.IConstants;
+import utility.RegularConstants;
 
-public class Figure implements IConstants {
+public class Figure {
 
     private final int x;
     private int y;
@@ -44,10 +43,10 @@ public class Figure implements IConstants {
 
     //Function that moves threads downward
     public void move() {
-        int upperLimit = drawingHeight - SIZE_FIGURE;
+        int upperLimit = drawingHeight - RegularConstants.SIZE_FIGURE;
         if (y <= upperLimit) {
 
-            if (IConst.REVERT_THREAD) {
+            if (RegularConstants.REVERT_THREAD) {
                 y -= 1;
             } else {
                 y += 1;
@@ -58,7 +57,7 @@ public class Figure implements IConstants {
 
     public void moveUpward() {
 
-        int upperLimit = drawingHeight - SIZE_FIGURE;
+        int upperLimit = drawingHeight - RegularConstants.SIZE_FIGURE;
 
         if (y <= drawingHeight) {
             y -= 1;
@@ -68,14 +67,14 @@ public class Figure implements IConstants {
     //Dibuja un Cuadrado
     public void draw(Graphics g) {
         g.setColor(this.objectColor);
-        g.fillRect(x, y, SIZE_FIGURE, SIZE_FIGURE);
+        g.fillRect(x, y, RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
     }
 
     //Dibuja un circulo
     public void drawCircle(Graphics g) {
-        g.drawOval(x, y, SIZE_FIGURE, SIZE_FIGURE);
+        g.drawOval(x, y, RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
         g.setColor(this.objectColor);
-        g.fillOval(x, y, SIZE_FIGURE + 1, SIZE_FIGURE + 1);
+        g.fillOval(x, y, RegularConstants.SIZE_FIGURE + 1, RegularConstants.SIZE_FIGURE + 1);
     }
 
     //Funcion que crea un triangulo

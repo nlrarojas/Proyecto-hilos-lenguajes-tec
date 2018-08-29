@@ -15,7 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-import util.IConst;
+import utility.Constants;
+import utility.RegularConstants;
 
 public class InitInterfaceAndThreads implements Runnable {
 
@@ -137,10 +138,10 @@ public class InitInterfaceAndThreads implements Runnable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (btnRevert.isSelected()) {
-                    IConst.REVERT_THREAD = true;
+                    RegularConstants.REVERT_THREAD = true;
 
                 } else {
-                    IConst.REVERT_THREAD = false;
+                    RegularConstants.REVERT_THREAD = false;
                 }
             }
         });
@@ -184,8 +185,8 @@ public class InitInterfaceAndThreads implements Runnable {
         btnInterrupt.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (btnInterrupt.isSelected()) {
-                    IConst.EXECUTE = true;
-                    if (!IConst.STARTED) {
+                    RegularConstants.EXECUTE = true;
+                    if (!RegularConstants.STARTED) {
                         if (figureSpeed.getSelectedIndex() == 0) {
                             starThreads(80);
 
@@ -195,11 +196,11 @@ public class InitInterfaceAndThreads implements Runnable {
                             starThreads(2);
                         }
 
-                        IConst.STARTED = true;
+                        RegularConstants.STARTED = true;
                     }
 
                 } else {
-                    IConst.EXECUTE = false;
+                    RegularConstants.EXECUTE = false;
                 }
             }
         });
@@ -230,8 +231,8 @@ public class InitInterfaceAndThreads implements Runnable {
         this.runningThread = false;
         frame.dispose();
         System.exit(0);
-        IConst.START_EXECUTION = false;
-        IConst.REVERT_THREAD = false;
+        RegularConstants.START_EXECUTION = false;
+        RegularConstants.REVERT_THREAD = false;
     }
 
     public void repaintMovingPanel() {

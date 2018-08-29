@@ -16,15 +16,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import utility.Constants;
-import utility.IConstants;
-import static utility.IConstants.TRACK_HEIGHT;
-import static utility.IConstants.TRACK_WIDTH;
+import utility.RegularConstants;
+import static utility.RegularConstants.TRACK_HEIGHT;
+import static utility.RegularConstants.TRACK_WIDTH;
 
 /**
  *
  * @author nelson
  */
-public class PrincipalWindow extends JFrame implements IConstants {
+public class PrincipalWindow extends JFrame {
 
     private JDesktopPane desktopPane;
     private TracksField tracksField;
@@ -40,28 +40,28 @@ public class PrincipalWindow extends JFrame implements IConstants {
 
     private void init() {
         this.setLayout(null);
-        this.setSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
+        this.setSize(new Dimension(RegularConstants.WINDOW_WIDTH, RegularConstants.WINDOW_HEIGHT));
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
         desktopPane = new JDesktopPane();
-        this.add(desktopPane).setBounds(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+        this.add(desktopPane).setBounds(0, 0, RegularConstants.WINDOW_WIDTH, RegularConstants.WINDOW_HEIGHT);
 
         tracksField = new TracksField();
-        desktopPane.add(tracksField).setBounds((WINDOW_WIDTH - TRACK_PANEL_WIDTH) / 2, 0, TRACK_PANEL_WIDTH, TRACK_HEIGHT);
+        desktopPane.add(tracksField).setBounds((RegularConstants.WINDOW_WIDTH - RegularConstants.TRACK_PANEL_WIDTH) / 2, 0, RegularConstants.TRACK_PANEL_WIDTH, TRACK_HEIGHT);
 
         actionsPanel = new JPanel();
         addActions();
-        desktopPane.add(actionsPanel).setBounds(0, TRACK_HEIGHT + 35, WINDOW_WIDTH, WINDOW_HEIGHT - (TRACK_HEIGHT + 10));
+        desktopPane.add(actionsPanel).setBounds(0, TRACK_HEIGHT + 35, RegularConstants.WINDOW_WIDTH, RegularConstants.WINDOW_HEIGHT - (TRACK_HEIGHT + 10));
 
         panelBarrier = new JPanel();
         panelBarrier.setLayout(null);
         
         FigureProducerThread fpt = new FigureProducerThread(panelBarrier);
         fpt.start();
-        for (int i = 0; i < NUMBER_OF_TRACKS; i++) {
+        for (int i = 0; i < RegularConstants.NUMBER_OF_TRACKS; i++) {
             JToggleButton barrier = new JToggleButton();
             TrackPanel tf = Constants.getInstance().getTracks()[i];
             barrier.addActionListener(new ActionListener() {
@@ -76,7 +76,7 @@ public class PrincipalWindow extends JFrame implements IConstants {
             });
             panelBarrier.add(barrier).setBounds((i * TRACK_WIDTH), 0, TRACK_WIDTH, 30);
         }        
-        desktopPane.add(panelBarrier).setBounds((WINDOW_WIDTH - TRACK_PANEL_WIDTH) / 2, TRACK_HEIGHT, TRACK_WIDTH*11, 30);
+        desktopPane.add(panelBarrier).setBounds((RegularConstants.WINDOW_WIDTH - RegularConstants.TRACK_PANEL_WIDTH) / 2, TRACK_HEIGHT, TRACK_WIDTH*11, 30);
         
         this.addWindowListener(new WindowAdapter() {
             @Override

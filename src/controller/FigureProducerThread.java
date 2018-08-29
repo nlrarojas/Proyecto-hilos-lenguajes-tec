@@ -6,25 +6,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import utility.Constants;
-import utility.IConstants;
+import utility.RegularConstants;
 
 /**
  *
  * @author nelson
  */
-public class FigureProducerThread extends Thread implements IConstants {        
+public class FigureProducerThread extends Thread {        
     
     public FigureProducerThread(JPanel panel) {
         super("Producer");
-        for (int i = 0; i < NUMBER_OF_TRACKS; i++) {
+        for (int i = 0; i < RegularConstants.NUMBER_OF_TRACKS; i++) {
             Constants.getInstance().getTracks()[i].setBarrier(panel);
         }        
     }
 
     @Override
     public void run() {        
-        while (START_EXECUTION) {
-            if (EXECUTE) {                
+        while (RegularConstants.START_EXECUTION) {
+            if (RegularConstants.EXECUTE) {                
                 trackWithLessFigures();                                                
             }
             try {

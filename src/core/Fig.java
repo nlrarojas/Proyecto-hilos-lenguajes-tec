@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
-import utility.IConstants;
+import utility.RegularConstants;
 
 /**
  *
  * @author nelson
  */
-public class Fig extends Thread implements IConstants{
+public class Fig extends Thread {
     private int yPosition;
     private int movement;
     private int speed;
@@ -21,7 +21,7 @@ public class Fig extends Thread implements IConstants{
     private boolean barrierActivated;
     
     public Fig(int speed, int movement, Color color, Icon image, TrackPanel trackPanel) {
-        this.yPosition = STARTING_TRACK_FIGURE_POSITION;
+        this.yPosition = RegularConstants.STARTING_TRACK_FIGURE_POSITION;
         this.movement = movement;
         this.speed = speed;
         this.color = color;
@@ -33,8 +33,8 @@ public class Fig extends Thread implements IConstants{
 
     @Override
     public void run() {
-        while (START_EXECUTION) {
-            if (EXECUTE) { 
+        while (RegularConstants.START_EXECUTION) {
+            if (RegularConstants.EXECUTE) { 
                 if (!barrierActivated) {
                     yPosition += movement;
                     trackPanel.repaint();                    
@@ -56,7 +56,7 @@ public class Fig extends Thread implements IConstants{
     }
     
     public Fig(int speed) {
-        this.yPosition = STARTING_TRACK_FIGURE_POSITION;
+        this.yPosition = RegularConstants.STARTING_TRACK_FIGURE_POSITION;
         this.movement = speed;
     }        
 

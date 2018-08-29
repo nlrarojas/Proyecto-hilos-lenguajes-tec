@@ -4,7 +4,7 @@ package utility;
  *
  * @author nelson
  */
-public interface IConstants {
+public class RegularConstants {
     public static int NUMBER_OF_TRACKS = 11;
         
     public static boolean GOING_DOWN = true;
@@ -24,5 +24,8 @@ public interface IConstants {
     public static int COLOR_IDENT_2 = 2;
     public static int COLOR_IDENT_3 = 3;
     
-    public static int STARTING_TRACK_FIGURE_POSITION = 10;
+    public static int STARTING_TRACK_FIGURE_POSITION = 10;     
+    
+    public static boolean REVERT_THREAD = false;
+    public static boolean STARTED = false;
 }

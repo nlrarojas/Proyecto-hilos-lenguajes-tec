@@ -2,7 +2,7 @@ package main;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import util.IConst;
+import utility.RegularConstants;
 
 public class MoveFigureThread implements Runnable {
     private boolean running;
@@ -21,8 +21,8 @@ public class MoveFigureThread implements Runnable {
     @Override
     public void run() {
     	
-        while(IConst.START_EXECUTION) {
-        	if (IConst.EXECUTE) {
+        while(RegularConstants.START_EXECUTION) {
+        	if (RegularConstants.EXECUTE) {
         		//While thread is running, call move function in figure
         		myObject.move();
         		try {

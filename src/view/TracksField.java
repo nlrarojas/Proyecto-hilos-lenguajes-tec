@@ -5,13 +5,13 @@ import core.TrackPanel;
 import java.awt.Color;
 import javax.swing.JPanel;
 import utility.Constants;
-import utility.IConstants;
+import utility.RegularConstants;
 
 /**
  *
  * @author nelson
  */
-public class TracksField extends JPanel implements IConstants {
+public class TracksField extends JPanel {
 
     boolean black = true;
 
@@ -25,7 +25,7 @@ public class TracksField extends JPanel implements IConstants {
     private void init() {        
         for (int i = 0; i < Constants.getInstance().getTracks().length; i++) {
             TrackPanel panel = Constants.getInstance().getTracks()[i];
-            this.add(panel).setBounds(i*TRACK_WIDTH, 0, TRACK_PANEL_WIDTH, TRACK_HEIGHT);                        
+            this.add(panel).setBounds(i*RegularConstants.TRACK_WIDTH, 0, RegularConstants.TRACK_PANEL_WIDTH, RegularConstants.TRACK_HEIGHT);                        
         }                
     }
 }
