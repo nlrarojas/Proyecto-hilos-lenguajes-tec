@@ -10,6 +10,8 @@ import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -32,8 +34,9 @@ public class PrincipalWindow extends JFrame {
     private JPanel actionsPanel;
     private JPanel panelBarrier;
     
-    private JTextField txtSpeed;
+    private JComboBox<String> comboSpeed;
     private JTextField txtValue;
+    private JCheckBox chckBoxFigureType;
     
     public PrincipalWindow() {
         init();
@@ -87,26 +90,10 @@ public class PrincipalWindow extends JFrame {
     
     private void addActions() {
         actionsPanel.setLayout(null);
-        txtSpeed = new JTextField();
-        txtSpeed.setText("Speed");
-        txtSpeed.setBounds(293, 11, 86, 20);
-        txtSpeed.setColumns(10);
-        txtSpeed.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (txtSpeed.getText().equals("Speed")) {
-                    txtSpeed.setText("");
-                }                
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (txtSpeed.getText().equals("")) {
-                    txtSpeed.setText("Speed");
-                }                 
-            }
-        });
-        actionsPanel.add(txtSpeed);       
+        String[] items = {"Velocidades", "Velocidad 1", "Velocidad 2", "Velocidad 3"};
+        comboSpeed = new JComboBox<>(items);        
+        comboSpeed.setBounds(293, 11, 130, 20);        
+        actionsPanel.add(comboSpeed);       
 
         txtValue = new JTextField();
         txtValue.setText("Value");
@@ -135,9 +122,13 @@ public class PrincipalWindow extends JFrame {
             public void actionPerformed(ActionEvent arg0) {
                 int value = 0;
                 int speed = 0;
-                if (!txtSpeed.getText().isEmpty() && !txtValue.getText().isEmpty()) {
-                    try {
-                        speed = Integer.parseInt(txtSpeed.getText());
+                if (!txtValue.getText().isEmpty()) {
+                    if (comboSpeed.getSelectedIndex() != 0) {
+                        speed = comboSpeed.getSelectedIndex();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Seleccione la velocidad");
+                    }
+                    try {                        
                         value = Integer.parseInt(txtValue.getText());
                         createFigures(speed, value);
                     } catch (NumberFormatException e) {
@@ -146,7 +137,7 @@ public class PrincipalWindow extends JFrame {
                 }                                
             }            
         });
-        btnCreate.setBounds(197, 41, 182, 23);
+        btnCreate.setBounds(200, 41, 220, 23);
         actionsPanel.add(btnCreate);  
         
         JToggleButton btnRevert = new JToggleButton("Revert");
@@ -156,7 +147,7 @@ public class PrincipalWindow extends JFrame {
                 revertOrientation(btnRevert.isSelected());
             }            
         });
-        btnRevert.setBounds(428, 10, 120, 23);
+        btnRevert.setBounds(448, 10, 120, 23);
         actionsPanel.add(btnRevert);
 
         JButton btnSimulation = new JButton("Simulation");
@@ -166,7 +157,7 @@ public class PrincipalWindow extends JFrame {
                 startSimulation();
             }            
         });
-        btnSimulation.setBounds(428, 41, 120, 23);
+        btnSimulation.setBounds(448, 41, 120, 23);
         actionsPanel.add(btnSimulation);
 
         JToggleButton btnInterrupt = new JToggleButton("Interrupt");
@@ -181,8 +172,11 @@ public class PrincipalWindow extends JFrame {
             }
         });
 
-        btnInterrupt.setBounds(600, 10, 100, 54);
+        btnInterrupt.setBounds(620, 10, 100, 54);
         actionsPanel.add(btnInterrupt);
+        
+        chckBoxFigureType = new JCheckBox("Show figures");
+        actionsPanel.add(chckBoxFigureType).setBounds(740, 0, 150, 30);
     }
     
     private void exitProcedure() {
