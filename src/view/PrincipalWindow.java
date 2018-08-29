@@ -54,7 +54,7 @@ public class PrincipalWindow extends JFrame implements IConstants {
 
         actionsPanel = new JPanel();
         addActions();
-        desktopPane.add(actionsPanel).setBounds(0, TRACK_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT - (TRACK_HEIGHT + 10));
+        desktopPane.add(actionsPanel).setBounds(0, TRACK_HEIGHT + 35, WINDOW_WIDTH, WINDOW_HEIGHT - (TRACK_HEIGHT + 10));
 
         panelBarrier = new JPanel();
         panelBarrier.setLayout(null);
@@ -76,7 +76,7 @@ public class PrincipalWindow extends JFrame implements IConstants {
             });
             panelBarrier.add(barrier).setBounds((i * TRACK_WIDTH), 0, TRACK_WIDTH, 30);
         }        
-        desktopPane.add(panelBarrier).setBounds((WINDOW_WIDTH - TRACK_PANEL_WIDTH) / 2, TRACK_HEIGHT / 2, TRACK_WIDTH*11, 30);
+        desktopPane.add(panelBarrier).setBounds((WINDOW_WIDTH - TRACK_PANEL_WIDTH) / 2, TRACK_HEIGHT, TRACK_WIDTH*11, 30);
         
         this.addWindowListener(new WindowAdapter() {
             @Override

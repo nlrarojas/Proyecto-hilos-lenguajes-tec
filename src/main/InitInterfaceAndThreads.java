@@ -2,7 +2,6 @@ package main;
 
 import view.PanelRepaint;
 import view.FiguresPanel;
-import core.Figure;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

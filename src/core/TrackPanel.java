@@ -29,6 +29,9 @@ public class TrackPanel extends JPanel implements IConstants {
         g.setColor(Color.GREEN);
         g.fillRect(1, 2, TRACK_PANEL_WIDTH / NUMBER_OF_TRACKS - 2, TRACK_HEIGHT - 17);
 
+        g.setColor(Color.red);
+        g.fillRect(0, TRACK_HEIGHT / 2, TRACK_WIDTH, 30);
+        
         for (int i = 0; i < figures.size(); i++) {
             /*if (i + 1 < figures.size()) {                
                     if ((figures.get(i).getyPosition() + figures.get(i).getSpeed()) 
@@ -54,11 +57,7 @@ public class TrackPanel extends JPanel implements IConstants {
                     figures.remove(figures.get(i));
                 }
             }
-        }
-        if (barrier != null) {
-            barrier.repaint();
-        }
-
+        }       
     }
 
     public int getNumberOfFigures() {

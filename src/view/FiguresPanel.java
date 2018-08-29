@@ -1,6 +1,6 @@
 package view;
 
-import core.Figure;
+import main.Figure;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
