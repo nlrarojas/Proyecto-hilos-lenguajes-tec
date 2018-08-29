@@ -51,6 +51,12 @@ public class Fig extends Thread {
                     Logger.getLogger(Fig.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             if (endExecution) {
                 break;
             }

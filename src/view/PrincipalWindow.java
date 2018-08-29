@@ -200,5 +200,6 @@ public class PrincipalWindow extends JFrame {
 
     private void iterruptExecution(boolean selected) {
         RegularConstants.EXECUTE = !selected;
+       
     }
 }
