@@ -32,63 +32,59 @@ public class TrackPanel extends JPanel {
 
         g.setColor(Color.red);
         g.fillRect(0, RegularConstants.TRACK_HEIGHT / 2, RegularConstants.TRACK_WIDTH, 30);
-        
+
         for (int i = 0; i < figures.size(); i++) {
             if (barrierActivated) {
-                if (figures.get(i).getyPosition() + figures.get(i).getMovement() > (RegularConstants.TRACK_HEIGHT / 2) && 
-                        figures.get(i).getyPosition() + figures.get(i).getMovement() < (RegularConstants.TRACK_HEIGHT / 2) + 30) {
+                if (figures.get(i).getyPosition() + figures.get(i).getMovement() > (RegularConstants.TRACK_HEIGHT / 2)
+                        && figures.get(i).getyPosition() + figures.get(i).getMovement() < (RegularConstants.TRACK_HEIGHT / 2) + 30) {
                     figures.get(i).setBarrierActivated(true);
                 } else {
-                	if (figures.get(i).getSpeed()==10) {
-                		g.setColor(figures.get(i).getColor());
+                    if (figures.get(i).getSpeed() == 10) {
+                        g.setColor(figures.get(i).getColor());
                         g.fillRect((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
-						
-					}else if(figures.get(i).getSpeed()==20) 
-					{
-						 g.drawOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
-						 g.setColor(figures.get(i).getColor());
-					     g.fillOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE + 1, RegularConstants.SIZE_FIGURE + 1);
-						
-					}else 
-					{
-						int[] xp = {(RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 + 5, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 - 5};
-				        int[] yp = { figures.get(i).getyPosition(),  figures.get(i).getyPosition() + 5,  figures.get(i).getyPosition() + 5};
-				        Polygon p = new Polygon(xp, yp, yp.length);
-				        g.drawPolygon(p);
-				        g.setColor(figures.get(i).getColor());
-				        g.fillPolygon(p);
-						
-					}
-                   
+
+                    } else if (figures.get(i).getSpeed() == 20) {
+                        g.drawOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
+                        g.setColor(figures.get(i).getColor());
+                        g.fillOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE + 1, RegularConstants.SIZE_FIGURE + 1);
+
+                    } else {
+                        int[] xp = {(RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 + 5, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 - 5};
+                        int[] yp = {figures.get(i).getyPosition(), figures.get(i).getyPosition() + 5, figures.get(i).getyPosition() + 5};
+                        Polygon p = new Polygon(xp, yp, yp.length);
+                        g.drawPolygon(p);
+                        g.setColor(figures.get(i).getColor());
+                        g.fillPolygon(p);
+
+                    }
+
                 }
             } else {
                 figures.get(i).setBarrierActivated(false);
-            	if (figures.get(i).getSpeed()==10) {
-            		g.setColor(figures.get(i).getColor());
+                if (figures.get(i).getSpeed() == 10) {
+                    g.setColor(figures.get(i).getColor());
                     g.fillRect((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
-					
-				}else if(figures.get(i).getSpeed()==20) 
-				{
-					 g.drawOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
-					 g.setColor(figures.get(i).getColor());
-				     g.fillOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE + 1, RegularConstants.SIZE_FIGURE + 1);
-					
-				}else 
-				{
-					int[] xp = {(RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 + 5, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 - 5};
-			        int[] yp = { figures.get(i).getyPosition(),  figures.get(i).getyPosition() + 5,  figures.get(i).getyPosition() + 5};
-			        Polygon p = new Polygon(xp, yp, yp.length);
-			        g.drawPolygon(p);
-			        g.setColor(figures.get(i).getColor());
-			        g.fillPolygon(p);
-					
-				}
+
+                } else if (figures.get(i).getSpeed() == 20) {
+                    g.drawOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
+                    g.setColor(figures.get(i).getColor());
+                    g.fillOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE + 1, RegularConstants.SIZE_FIGURE + 1);
+
+                } else {
+                    int[] xp = {(RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 + 5, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 - 5};
+                    int[] yp = {figures.get(i).getyPosition(), figures.get(i).getyPosition() + 5, figures.get(i).getyPosition() + 5};
+                    Polygon p = new Polygon(xp, yp, yp.length);
+                    g.drawPolygon(p);
+                    g.setColor(figures.get(i).getColor());
+                    g.fillPolygon(p);
+
+                }
                 if ((figures.get(i).getyPosition() + figures.get(i).getMovement()) > (RegularConstants.TRACK_HEIGHT - 30)) {
                     figures.get(i).endExecutionThread();
                     figures.remove(figures.get(i));
                 }
             }
-        }       
+        }
     }
 
     public int getNumberOfFigures() {
@@ -106,12 +102,12 @@ public class TrackPanel extends JPanel {
     public void activeBarrier(boolean selected) {
         barrierActivated = selected;
     }
-    
+
     public boolean getBarrierStatus() {
         return barrierActivated;
     }
-    
- /*   public void drawCircle(Graphics g) {
+
+    /*   public void drawCircle(Graphics g) {
         g.drawOval(RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
         g.fillOval(x, y, RegularConstants.SIZE_FIGURE + 1, RegularConstants.SIZE_FIGURE + 1);
     }
