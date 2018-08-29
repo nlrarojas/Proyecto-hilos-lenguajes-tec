@@ -1,59 +1,68 @@
 package main;
 
-import core.TrackPanel;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.util.ArrayList;
 import java.util.Random;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import util.IConst;
 import utility.IConstants;
 
 public class Figure implements IConstants {
 
     private final int x;
     private int y;
-    private int panelPosition;    
-
-    private int height;
-    private TrackPanel panel;
-    private boolean ended;
-
-    private Color objectColor;
+    private int panelPosition;
 
     private int drawingWidth;
     private int drawingHeight;
+    private Color objectColor;
+    private int typeFigure;
+//***************************************************************************
 
-    public Figure(TrackPanel panel, int panelPosition) {
-        this.x = panel.getWidth() / 2;
-        this.y = GOING_DOWN ? 0 : panel.getHeight();
-        this.panelPosition = panelPosition;
-        this.height = panel.getHeight();
-        this.panel = panel;
-
-        this.ended = false;
-
-        this.objectColor = generateRandomColor();
-    }
-
-    public Figure(int drawingWidth, int drawingHeight) {
-    	Random r = new Random();
+    public Figure(int drawingWidth, int drawingHeight, int type) {
+        Random r = new Random();
         this.drawingWidth = drawingWidth - 100;
         this.drawingHeight = drawingHeight;
         x = generatePosition(r.nextInt(10));
-        y = 0; 
+        y = 0;
         this.drawingWidth = drawingWidth;
         this.objectColor = generateRandomColor();
-        
+        this.typeFigure = type;
+
         panelPosition = 0;
     }
 
-    //Agregar a función que modifica la trayectoria de cada hilo dependiendo de una función aleatoria
+    public int getTypeFigure() {
+        return typeFigure;
+    }
+
+    public void setTypeFigure(int typeFigure) {
+        this.typeFigure = typeFigure;
+    }
+
+    //Function that moves threads downward
     public void move() {
-        System.out.println(new Random().nextInt(100));
-        y = GOING_DOWN ? y + 1 : y - 1;
-        ended = y >= height;
-        //if ended remove the figure from the track panel
+        int upperLimit = drawingHeight - SIZE_FIGURE;
+        if (y <= upperLimit) {
+
+            if (IConst.REVERT_THREAD) {
+                y -= 1;
+            } else {
+                y += 1;
+            }
+        }
+
+    }
+
+    public void moveUpward() {
+
+        int upperLimit = drawingHeight - SIZE_FIGURE;
+
+        if (y <= drawingHeight) {
+            y -= 1;
+        }
     }
 
     //Dibuja un Cuadrado

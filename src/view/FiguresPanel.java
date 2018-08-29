@@ -4,6 +4,7 @@ import main.Figure;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -33,7 +34,13 @@ public class FiguresPanel extends JPanel {
         g.fillRect(width / 2, 0, width, height);
 
         for (int i = 0; i < gameObjectsArray.length; i++) {
+        	
+        	if(gameObjectsArray[i].getTypeFigure() == 80)
             gameObjectsArray[i].draw(g);
+        	else if(gameObjectsArray[i].getTypeFigure() == 40)
+        		 gameObjectsArray[i].drawCircle(g);
+        	else 
+        		gameObjectsArray[i].drawTriangle(g);
         }
 
         

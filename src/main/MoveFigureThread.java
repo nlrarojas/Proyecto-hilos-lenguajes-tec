@@ -20,20 +20,27 @@ public class MoveFigureThread implements Runnable {
 
     @Override
     public void run() {
+    	
         while(IConst.START_EXECUTION) {
-            if (IConst.EXECUTE) {
-                    //While thread is running, call move function in figure
-                myObject.move();
-
-                try {
-                    Thread.sleep(this.sleepTime);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MoveFigureThread.class.getName()).log(Level.SEVERE, null, ex);
-                }            
+        	if (IConst.EXECUTE) {
+        		//While thread is running, call move function in figure
+        		myObject.move();
+        		try {
+        			Thread.sleep(this.sleepTime);
+        			} catch (InterruptedException ex1) {
+        				Logger.getLogger(MoveFigureThread.class.getName()).log(Level.SEVERE, null, ex1);
+        			}            
+        		}
+        	try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             }
-        }//end while
-    }
-    
+        }
+         
+        
     public synchronized void setRunning(boolean running) {
         this.running = running;
     }

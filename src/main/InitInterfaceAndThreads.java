@@ -7,7 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Random;
+
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -17,7 +20,6 @@ import util.IConst;
 public class InitInterfaceAndThreads implements Runnable {
 
 //UI Variables**********************************************************************************
-    private JTextField txtSpeed;
     private JTextField txtValue;
     private JTextField txtCarriles;
     private JPanel menuPanel;
@@ -47,10 +49,10 @@ public class InitInterfaceAndThreads implements Runnable {
 
     //constructor
     public InitInterfaceAndThreads() {
-        this.sleepThreadTime = 30;
-        this.sleepTimePaint = 30;
         this.runningThread = true;
+
     }
+//*******************************************
 
     /**
      * @wbp.parser.entryPoint
@@ -70,17 +72,13 @@ public class InitInterfaceAndThreads implements Runnable {
         });
 
         menuPanel = new JPanel();
-        menuPanel.setLayout(null);
 
-        //GridsCanvas xyz = new GridsCanvas(DRAWING_WIDTH, DRAWING_HEIGTH, numCols);
-        movingPanel = new FiguresPanel(11, gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
-        frame.getContentPane().add(movingPanel).setBounds(0, 0, DRAWING_WIDTH * 2, DRAWING_HEIGTH + 20);
-
-        txtSpeed = new JTextField();
-        txtSpeed.setText("Speed");
-        txtSpeed.setBounds(293, 11, 86, 20);
-        menuPanel.add(txtSpeed);
-        txtSpeed.setColumns(10);
+        JComboBox<String> figureSpeed = new JComboBox<String>();
+        figureSpeed.addItem("Velocidad 1");
+        figureSpeed.addItem("Velocidad 2");
+        figureSpeed.addItem("Velocidad 3");
+        figureSpeed.setBounds(293, 11, 86, 20);
+        menuPanel.add(figureSpeed);
 
         txtValue = new JTextField();
         txtValue.setText("Value");
@@ -91,16 +89,28 @@ public class InitInterfaceAndThreads implements Runnable {
 //Button that create the game frame and call starThreads**********************************************************
         JButton btnCreate = new JButton("Create");
         btnCreate.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent arg0) {
                 gameObjectsArray = new Figure[Integer.parseInt(txtValue.getText())];
                 moveObjectArray = new MoveFigureThread[Integer.parseInt(txtValue.getText())];
 
                 for (int i = 0; i < gameObjectsArray.length; i++) {
-                    gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH);
-                    moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], sleepThreadTime, "Thread " + i, true);
+                    if (figureSpeed.getSelectedIndex() == 0) {
+                        gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH, 80);
+                        moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], gameObjectsArray[i].getTypeFigure(), "Thread " + i, true);
+                    } else if (figureSpeed.getSelectedIndex() == 1) {
+                        gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH, 40);
+                        moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], gameObjectsArray[i].getTypeFigure(), "Thread " + i, true);
+                    } else {
+                        gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH, 10);
+                        moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], gameObjectsArray[i].getTypeFigure(), "Thread " + i, true);
+                    }
+
                 }
+
                 movingPanel = new FiguresPanel(11, gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
                 frame.getContentPane().add(movingPanel).setBounds(0, 0, DRAWING_WIDTH * 2, DRAWING_HEIGTH + 20);
+                //starThreads(Integer.parseInt(txtSpeed.getText()));
             }
         });
         btnCreate.setBounds(197, 41, 182, 23);
@@ -122,10 +132,16 @@ public class InitInterfaceAndThreads implements Runnable {
         btnBarrier.setBounds(464, 10, 89, 23);
         menuPanel.add(btnBarrier);
 
-        JButton btnRevert = new JButton("Revert");
+        JToggleButton btnRevert = new JToggleButton("Revert");
         btnRevert.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (btnRevert.isSelected()) {
+                    IConst.REVERT_THREAD = true;
+
+                } else {
+                    IConst.REVERT_THREAD = false;
+                }
             }
         });
         btnRevert.setBounds(628, 10, 120, 23);
@@ -135,27 +151,57 @@ public class InitInterfaceAndThreads implements Runnable {
         btnSimulation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                gameObjectsArray = new Figure[Integer.parseInt(txtValue.getText())];
+                moveObjectArray = new MoveFigureThread[Integer.parseInt(txtValue.getText())];
+
+                for (int i = 0; i < gameObjectsArray.length; i++) {
+                    Random r = new Random();
+                    int Result = r.nextInt(3) + 1;
+                    if (Result == 1) {
+                        gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH, 80);
+                        moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], gameObjectsArray[i].getTypeFigure(), "Thread " + i, true);
+                    } else if (Result == 2) {
+                        gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH, 40);
+                        moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], gameObjectsArray[i].getTypeFigure(), "Thread " + i, true);
+                    } else {
+                        gameObjectsArray[i] = new Figure(DRAWING_WIDTH, DRAWING_HEIGTH, 10);
+                        moveObjectArray[i] = new MoveFigureThread(gameObjectsArray[i], gameObjectsArray[i].getTypeFigure(), "Thread " + i, true);
+                    }
+
+                }
+
+                movingPanel = new FiguresPanel(11, gameObjectsArray, DRAWING_WIDTH, DRAWING_HEIGTH);
+                frame.getContentPane().add(movingPanel).setBounds(0, 0, DRAWING_WIDTH * 2, DRAWING_HEIGTH + 20);
+                starThreads(10);
+
             }
         });
         btnSimulation.setBounds(628, 41, 120, 23);
         menuPanel.add(btnSimulation);
-        
+
         JToggleButton btnInterrupt = new JToggleButton("Interrupt");
         btnInterrupt.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    if (btnInterrupt.isSelected()) {    
-                        IConst.EXECUTE = true; 
-                        if (!IConst.STARTED) {
-                            starThreads(Integer.parseInt(txtSpeed.getText()));                            
-                            IConst.STARTED = true;
-                        }                                                
-                        System.out.println("1");
-                    } else {                        
-                        IConst.EXECUTE = false;   
-                        System.out.println("2");
-                        System.out.println(IConst.EXECUTE);
-                    }                    
-        	}            	
+            public void actionPerformed(ActionEvent e) {
+                if (btnInterrupt.isSelected()) {
+                    IConst.EXECUTE = true;
+                    if (!IConst.STARTED) {
+                        if (figureSpeed.getSelectedIndex() == 0) {
+                            starThreads(80);
+
+                        } else if (figureSpeed.getSelectedIndex() == 1) {
+                            starThreads(40);
+                        } else {
+                            starThreads(2);
+                        }
+
+                        IConst.STARTED = true;
+                    }
+
+                } else {
+                    IConst.EXECUTE = false;
+                }
+            }
         });
 
         btnInterrupt.setBounds(819, 10, 100, 54);
@@ -173,8 +219,8 @@ public class InitInterfaceAndThreads implements Runnable {
         for (MoveFigureThread myCurrentThread : moveObjectArray) {
             new Thread(myCurrentThread).start();
         } //end for
-        //this.sleepThreadTime = speed;
-        //this.sleepTimePaint = speed;
+        this.sleepThreadTime = speed;
+        this.sleepTimePaint = speed;
         panelRepaint = new PanelRepaint(this, speed, this.runningThread);
         new Thread(panelRepaint).start();
 
@@ -185,6 +231,7 @@ public class InitInterfaceAndThreads implements Runnable {
         frame.dispose();
         System.exit(0);
         IConst.START_EXECUTION = false;
+        IConst.REVERT_THREAD = false;
     }
 
     public void repaintMovingPanel() {

@@ -13,4 +13,5 @@ public class IConst {
     public static boolean START_EXECUTION = true;
     public static boolean EXECUTE = true;
     public static boolean STARTED = false;
+    public static boolean REVERT_THREAD = false; 
 }
