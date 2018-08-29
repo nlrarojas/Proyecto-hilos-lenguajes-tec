@@ -22,7 +22,7 @@ public class Fig extends Thread {
     
     public Fig(int speed, int movement, Color color, Icon image, TrackPanel trackPanel) {
         this.yPosition = RegularConstants.STARTING_TRACK_FIGURE_POSITION;
-        this.movement = movement;
+        this.movement = 1;
         this.speed = speed;
         this.color = color;
         this.image = image;

@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
@@ -58,9 +59,7 @@ public class PrincipalWindow extends JFrame {
 
         panelBarrier = new JPanel();
         panelBarrier.setLayout(null);
-        
-        FigureProducerThread fpt = new FigureProducerThread(panelBarrier);
-        fpt.start();
+                
         for (int i = 0; i < RegularConstants.NUMBER_OF_TRACKS; i++) {
             JToggleButton barrier = new JToggleButton();
             TrackPanel tf = Constants.getInstance().getTracks()[i];
@@ -134,9 +133,17 @@ public class PrincipalWindow extends JFrame {
         btnCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                int speed = Integer.parseInt(txtSpeed.getText());
-                int value = Integer.parseInt(txtValue.getText());
-                createFigures(speed, value);
+                int value = 0;
+                int speed = 0;
+                if (!txtSpeed.getText().isEmpty() && !txtValue.getText().isEmpty()) {
+                    try {
+                        speed = Integer.parseInt(txtSpeed.getText());
+                        value = Integer.parseInt(txtValue.getText());
+                        createFigures(speed, value);
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Ingrese valores numéricos");
+                    }
+                }                                
             }            
         });
         btnCreate.setBounds(197, 41, 182, 23);
@@ -175,7 +182,7 @@ public class PrincipalWindow extends JFrame {
     }
     
     private void exitProcedure() {
-        //START_EXECUTION = false;
+        RegularConstants.START_EXECUTION = false;
         this.dispose();
         System.exit(0);
     }
@@ -189,10 +196,11 @@ public class PrincipalWindow extends JFrame {
     }
     
     private void startSimulation() {
-        
+        FigureProducerThread fpt = new FigureProducerThread();
+        fpt.start();
     }
     
-    private void iterruptExecution(boolean selected) {
-        
+    private void iterruptExecution(boolean selected) {        
+        RegularConstants.EXECUTE = !selected;                
     }
 }
