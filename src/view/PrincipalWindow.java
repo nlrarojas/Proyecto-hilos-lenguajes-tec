@@ -166,6 +166,10 @@ public class PrincipalWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 iterruptExecution(btnInterrupt.isSelected());
+                if (btnInterrupt.isSelected()) 
+                {
+                	
+                }
             }
         });
 
@@ -189,6 +193,10 @@ public class PrincipalWindow extends JFrame {
     }
     
     private void revertOrientation(boolean selected) {
+    	if(selected == true)
+    	RegularConstants.REVERT_THREAD = true;
+    	else
+    		RegularConstants.REVERT_THREAD = false;  		
         
     }
     

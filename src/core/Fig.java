@@ -36,8 +36,14 @@ public class Fig extends Thread {
         while (RegularConstants.START_EXECUTION) {
             if (RegularConstants.EXECUTE) { 
                 if (!barrierActivated) {
-                    yPosition += movement;
-                    trackPanel.repaint();                    
+                	if (RegularConstants.REVERT_THREAD) {
+                		yPosition -= movement;
+                        trackPanel.repaint();
+					}else 
+					{
+						yPosition += movement;
+	                    trackPanel.repaint();
+					}                   
                 }
                 try {
                     Thread.sleep(speed);
