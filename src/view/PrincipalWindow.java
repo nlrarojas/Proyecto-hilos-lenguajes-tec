@@ -1,5 +1,6 @@
 package view;
 
+import controller.CreateFigures;
 import controller.FigureProducerThread;
 import core.TrackPanel;
 import java.awt.Dimension;
@@ -182,7 +183,9 @@ public class PrincipalWindow extends JFrame {
     }
     
     private void createFigures(int speed, int value) {
-        
+        Constants.getInstance().initializeTracks();
+        CreateFigures createFigures = new CreateFigures(speed, value);
+        createFigures.create();        
     }
     
     private void revertOrientation(boolean selected) {
