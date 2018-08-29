@@ -166,9 +166,7 @@ public class PrincipalWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 iterruptExecution(btnInterrupt.isSelected());
-                if (btnInterrupt.isSelected()) {
 
-                }
             }
         });
 

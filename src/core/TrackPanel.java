@@ -107,17 +107,4 @@ public class TrackPanel extends JPanel {
         return barrierActivated;
     }
 
-    /*   public void drawCircle(Graphics g) {
-        g.drawOval(RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
-        g.fillOval(x, y, RegularConstants.SIZE_FIGURE + 1, RegularConstants.SIZE_FIGURE + 1);
-    }
-
-    //Funcion que crea un triangulo
-    public void drawTriangle(Graphics g) {
-        int[] xp = {x, x + 5, x - 5};
-        int[] yp = {y, y + 5, y + 5};
-        Polygon p = new Polygon(xp, yp, yp.length);
-        g.drawPolygon(p);
-        g.fillPolygon(p);
-    }*/
 }
