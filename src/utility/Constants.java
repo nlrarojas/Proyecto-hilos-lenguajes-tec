@@ -12,7 +12,10 @@ public class Constants {
     public static int HEIGHT = 600;
     
     public Constants () {
-        initializeTracks();
+        tracks = new TrackPanel[RegularConstants.NUMBER_OF_TRACKS];
+        for (int i = 0; i < RegularConstants.NUMBER_OF_TRACKS; i++) {
+            tracks[i] = new TrackPanel();            
+        }
     }
     
     public static Constants getInstance() {
@@ -30,11 +33,4 @@ public class Constants {
     public void setTracks(TrackPanel[] tracks) {
         this.tracks = tracks;
     }      
-
-    public void initializeTracks() {
-        tracks = new TrackPanel[RegularConstants.NUMBER_OF_TRACKS];
-        for (int i = 0; i < RegularConstants.NUMBER_OF_TRACKS; i++) {
-            tracks[i] = new TrackPanel();            
-        }
-    }
 }
