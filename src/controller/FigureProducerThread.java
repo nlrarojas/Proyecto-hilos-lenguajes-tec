@@ -2,6 +2,7 @@ package controller;
 
 import core.Fig;
 import java.awt.Color;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -41,7 +42,9 @@ public class FigureProducerThread extends Thread {
                 position = i;
             }
         }
-        Fig fig = new Fig(250, 5, Color.ORANGE, null, Constants.getInstance().getTracks()[position]);
+        Random r = new Random();;
+        int result = r.nextInt(3)+1;
+        Fig fig = new Fig(result*10, 5, Color.ORANGE, null, Constants.getInstance().getTracks()[position]);
         Constants.getInstance().getTracks()[position].addFigure(fig);
         fig.start();
     }
