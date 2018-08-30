@@ -26,9 +26,9 @@ public class TrackPanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.black);
-        g.fillRect(0, 0, RegularConstants.TRACK_PANEL_WIDTH / RegularConstants.NUMBER_OF_TRACKS, RegularConstants.TRACK_HEIGHT - 14);
+        g.fillRect(0, 0, RegularConstants.TRACK_PANEL_WIDTH / RegularConstants.NUMBER_OF_TRACKS, RegularConstants.TRACK_HEIGHT - 11);
         g.setColor(Color.GREEN);
-        g.fillRect(1, 2, RegularConstants.TRACK_PANEL_WIDTH / RegularConstants.NUMBER_OF_TRACKS - 2, RegularConstants.TRACK_HEIGHT - 17);
+        g.fillRect(1, 2, RegularConstants.TRACK_PANEL_WIDTH / RegularConstants.NUMBER_OF_TRACKS - 2, RegularConstants.TRACK_HEIGHT - 14);
 
         g.setColor(Color.red);
         g.fillRect(0, RegularConstants.TRACK_HEIGHT / 2, RegularConstants.TRACK_WIDTH, 30);        
@@ -41,12 +41,24 @@ public class TrackPanel extends JPanel {
                     if (figures.get(i).getSpeed() == 10) {
                         g.setColor(figures.get(i).getColor());
                         g.fillRect((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
-
+                    } else if ((figures.get(i).getSpeed() / 100) * 10 == 10) {
+                        g.setColor(Color.MAGENTA);
+                        g.fillRect((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
                     } else if (figures.get(i).getSpeed() == 20) {
                         g.drawOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
                         g.setColor(figures.get(i).getColor());
                         g.fillOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE + 1, RegularConstants.SIZE_FIGURE + 1);
-
+                    } else if ((figures.get(i).getSpeed() / 100) * 10 == 20) {
+                        g.setColor(Color.BLACK);
+                        g.drawOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);                    
+                        g.fillOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE + 1, RegularConstants.SIZE_FIGURE + 1);
+                    } else if ((figures.get(i).getSpeed() / 100) * 10 == 30) {
+                        int[] xp = {(RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 + 15, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 - 15};
+                        int[] yp = {figures.get(i).getyPosition(), figures.get(i).getyPosition() + 15, figures.get(i).getyPosition() + 15};
+                        Polygon p = new Polygon(xp, yp, yp.length);
+                        g.drawPolygon(p);
+                        g.setColor(Color.BLUE);
+                        g.fillPolygon(p);
                     } else {
                         int[] xp = {(RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 + 5, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 - 5};
                         int[] yp = {figures.get(i).getyPosition(), figures.get(i).getyPosition() + 5, figures.get(i).getyPosition() + 5};
@@ -58,23 +70,22 @@ public class TrackPanel extends JPanel {
                 }
             } else {
                 figures.get(i).setBarrierActivated(false);
-                if (figures.get(i).getSpeed() == 10) {
-                    g.setColor(figures.get(i).getColor());
+                if (figures.get(i).getSpeed() == 10 || (figures.get(i).getSpeed() / 100) * 10 == 10) {
+                    g.setColor(Color.MAGENTA);
                     g.fillRect((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
 
-                } else if (figures.get(i).getSpeed() == 20) {
-                    g.drawOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
-                    g.setColor(figures.get(i).getColor());
+                } else if (figures.get(i).getSpeed() == 20 || (figures.get(i).getSpeed() / 100) * 10 == 20) {
+                    g.setColor(Color.BLACK);
+                    g.drawOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);                    
                     g.fillOval((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE + 1, RegularConstants.SIZE_FIGURE + 1);
 
                 } else {
-                    int[] xp = {(RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 + 5, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 - 5};
-                    int[] yp = {figures.get(i).getyPosition(), figures.get(i).getyPosition() + 5, figures.get(i).getyPosition() + 5};
+                    int[] xp = {(RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 + 15, (RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2 - 15};
+                    int[] yp = {figures.get(i).getyPosition(), figures.get(i).getyPosition() + 15, figures.get(i).getyPosition() + 15};
                     Polygon p = new Polygon(xp, yp, yp.length);
                     g.drawPolygon(p);
-                    g.setColor(figures.get(i).getColor());
+                    g.setColor(Color.BLUE);
                     g.fillPolygon(p);
-
                 }
                 if ((figures.get(i).getyPosition() + figures.get(i).getMovement()) > (RegularConstants.TRACK_HEIGHT - 30) || (figures.get(i).getyPosition() + figures.get(i).getMovement()) < 0 ) {
                     figures.get(i).endExecutionThread();

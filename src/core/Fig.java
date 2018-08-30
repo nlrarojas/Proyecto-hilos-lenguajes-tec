@@ -40,9 +40,11 @@ public class Fig extends Thread {
                     if (RegularConstants.REVERT_THREAD) {
                         yPosition -= movement;
                         trackPanel.repaint();
+                        RegularConstants.STARTING_TRACK_FIGURE_POSITION = RegularConstants.TRACK_HEIGHT-50;
                     } else {                        
                         yPosition += movement;
                         trackPanel.repaint();
+                        RegularConstants.STARTING_TRACK_FIGURE_POSITION = 0;
                     }
                 }
                 try {
