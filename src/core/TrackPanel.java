@@ -32,7 +32,12 @@ public class TrackPanel extends JPanel {
 
         g.setColor(Color.red);
         g.fillRect(0, RegularConstants.TRACK_HEIGHT / 2, RegularConstants.TRACK_WIDTH, 30);        
-        for (int i = 0; i < figures.size(); i++) {            
+        for (int i = 0; i < figures.size(); i++) {
+            if (i + 1 < figures.size()) {
+                if (figures.get(i+1).getyPosition() + RegularConstants.SIZE_FIGURE >= figures.get(i).getyPosition()) {
+                    figures.get(i+1).setyPosition(figures.get(i+1).getyPosition() - figures.get(i).getMovement());
+                }
+            }
             if (barrierActivated) {
                 if (figures.get(i).getyPosition() + figures.get(i).getMovement() > (RegularConstants.TRACK_HEIGHT / 2)
                         && figures.get(i).getyPosition() + figures.get(i).getMovement() < (RegularConstants.TRACK_HEIGHT / 2) + 30) {
@@ -87,9 +92,11 @@ public class TrackPanel extends JPanel {
                     g.setColor(Color.BLUE);
                     g.fillPolygon(p);
                 }
-                if ((figures.get(i).getyPosition() + figures.get(i).getMovement()) > (RegularConstants.TRACK_HEIGHT - 30) || (figures.get(i).getyPosition() + figures.get(i).getMovement()) < 0 ) {
+                if ((figures.get(i).getyPosition() + figures.get(i).getMovement()) > (RegularConstants.TRACK_HEIGHT - 30) 
+                        || (figures.get(i).getyPosition() + figures.get(i).getMovement()) < 0 ) {
                     figures.get(i).endExecutionThread();
                     figures.remove(figures.get(i));
+                    repaint();
                 }
             }
         }
