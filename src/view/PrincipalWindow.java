@@ -186,7 +186,6 @@ public class PrincipalWindow extends JFrame {
     }
 
     private void createFigures(int speed, int value) {
-        Constants.getInstance().initializeTracks();
         CreateFigures createFigures = new CreateFigures(speed, value);
         createFigures.create();
     }

@@ -29,7 +29,7 @@ public class CreateFigures {
         for (int i = 0; i < value; i++) {
             Random random = new Random();
             int position = random.nextInt(RegularConstants.NUMBER_OF_TRACKS);           
-            Fig fig = new Fig(speed * 250, 5, Color.ORANGE, null, Constants.getInstance().getTracks()[position]);
+            Fig fig = new Fig(speed * 100, 5, Color.ORANGE, null, Constants.getInstance().getTracks()[position]);
             Constants.getInstance().getTracks()[position].addFigure(fig);
             fig.start(); 
         }
