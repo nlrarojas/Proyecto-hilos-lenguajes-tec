@@ -105,7 +105,7 @@ public class Fig extends Thread {
 
     public void setImage(BufferedImage image) {
         this.image = image;
-    }
+    }   
 
     public int getSpeed() {
         return speed;
