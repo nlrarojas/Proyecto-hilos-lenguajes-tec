@@ -43,7 +43,7 @@ public class TrackPanel extends JPanel {
                         && figures.get(i).getyPosition() + figures.get(i).getMovement() < (RegularConstants.TRACK_HEIGHT / 2) + 30) {
                     figures.get(i).setBarrierActivated(true);
                 } else {
-<<<<<<< HEAD
+
                 	//Aqui se necesitan pintar las imagenes*************************************************************************************************
                 	if(RegularConstants.imageFig == true) 
                 	{
@@ -101,12 +101,11 @@ public class TrackPanel extends JPanel {
                 {
                 	//Borrar este codigo y cambiar por el que pinta imagenes**********************************************************************************
                     if (figures.get(i).getSpeed() == 10 || (figures.get(i).getSpeed() / 100) * 10 == 10) {
-=======
+
                     if (figures.get(i).getSpeed() == 10) {
                         g.setColor(figures.get(i).getColor());
                         g.fillRect((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
                     } else if ((figures.get(i).getSpeed() / 100) * 10 == 10) {
->>>>>>> parent of e922a6c... Reparar funcion que pinta las imagenes
                         g.setColor(Color.MAGENTA);
                         g.fillRect((RegularConstants.TRACK_WIDTH - RegularConstants.SIZE_FIGURE) / 2, figures.get(i).getyPosition(), RegularConstants.SIZE_FIGURE, RegularConstants.SIZE_FIGURE);
                     } else if (figures.get(i).getSpeed() == 20) {
@@ -159,6 +158,7 @@ public class TrackPanel extends JPanel {
                     repaint();
                 }
             }
+           }
         }
     }
 
