@@ -40,7 +40,7 @@ public class PrincipalWindow extends JFrame {
     private JCheckBox chckBoxFigureType;
 
     private FigureProducerThread fpt;
-    
+
     public PrincipalWindow() {
         init();
     }
@@ -177,6 +177,14 @@ public class PrincipalWindow extends JFrame {
 
         chckBoxFigureType = new JCheckBox("Show figures");
         actionsPanel.add(chckBoxFigureType).setBounds(740, 0, 150, 30);
+
+        chckBoxFigureType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {                
+                imageSelect(chckBoxFigureType.isSelected());
+            }
+        });
+
     }
 
     private void exitProcedure() {
@@ -190,8 +198,8 @@ public class PrincipalWindow extends JFrame {
         createFigures.create();
     }
 
-    private void revertOrientation(boolean selected) {        
-        RegularConstants.REVERT_THREAD = selected;        
+    private void revertOrientation(boolean selected) {
+        RegularConstants.REVERT_THREAD = selected;
     }
 
     private void startSimulation() {
@@ -200,6 +208,10 @@ public class PrincipalWindow extends JFrame {
     }
 
     private void iterruptExecution(boolean selected) {
-        RegularConstants.EXECUTE = !selected;       
+        RegularConstants.EXECUTE = !selected;
+    }
+
+    private void imageSelect(boolean selected) {
+        RegularConstants.IMAGE_FIG = selected;
     }
 }

@@ -28,4 +28,6 @@ public class RegularConstants {
     
     public static boolean REVERT_THREAD = false;
     public static boolean STARTED = false;
+    
+    public static boolean IMAGE_FIG = false;
 }

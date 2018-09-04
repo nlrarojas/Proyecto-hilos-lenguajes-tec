@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPanel;
 import utility.Constants;
 import utility.RegularConstants;
 
