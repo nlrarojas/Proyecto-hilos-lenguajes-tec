@@ -50,6 +50,11 @@ public class TrackPanel extends JPanel {
                 	//Aqui se necesitan pintar las imagenes*************************************************************************************************
                 	if(RegularConstants.imageFig == true) 
                 	{
+                		if (figures.get(i).getSpeed() == 10) 
+                		{
+                			//g.drawImage(figures.get(, x, y, width, height, bgcolor, observer);
+                		}
+                		
 /*                		try {
 							figures.get(i).setImage(ImageIO.read(new File("C:/Universidad/workspace/Hilos/src/utility/8bit.jpg")));
 							g.drawImage(img, x, y, width, height, bgcolor, observer);
