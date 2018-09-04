@@ -1,7 +1,6 @@
 package core;
 
 import java.awt.Color;
-import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -17,12 +16,12 @@ public class Fig extends Thread {
     private int movement;
     private int speed;
     private Color color;
-    private BufferedImage image;
+    private Icon image;
     private boolean endExecution;
     private TrackPanel trackPanel;
     private boolean barrierActivated;
 
-    public Fig(int speed, int movement, Color color, BufferedImage image, TrackPanel trackPanel) {
+    public Fig(int speed, int movement, Color color, Icon image, TrackPanel trackPanel) {
         this.yPosition = RegularConstants.STARTING_TRACK_FIGURE_POSITION;
         this.movement = 1;
         this.speed = speed;
@@ -99,11 +98,11 @@ public class Fig extends Thread {
         this.color = color;
     }
 
-    public BufferedImage getImage() {
+    public Icon getImage() {
         return image;
     }
 
-    public void setImage(BufferedImage image) {
+    public void setImage(Icon image) {
         this.image = image;
     }
 

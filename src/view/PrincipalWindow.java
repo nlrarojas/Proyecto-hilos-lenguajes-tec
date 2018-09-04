@@ -176,15 +176,6 @@ public class PrincipalWindow extends JFrame {
         actionsPanel.add(btnInterrupt);
 
         chckBoxFigureType = new JCheckBox("Show figures");
-        chckBoxFigureType.addActionListener(new ActionListener() 
-        {
-        	@Override
-            public void actionPerformed(ActionEvent e) {
-        		imageSelect(chckBoxFigureType.isSelected());
-        		
-        		
-        	}
-        });
         actionsPanel.add(chckBoxFigureType).setBounds(740, 0, 150, 30);
     }
 
@@ -210,10 +201,5 @@ public class PrincipalWindow extends JFrame {
 
     private void iterruptExecution(boolean selected) {
         RegularConstants.EXECUTE = !selected;       
-    }
-    
-    private void imageSelect (boolean selected) 
-    {
-    	RegularConstants.imageFig = selected;
     }
 }
