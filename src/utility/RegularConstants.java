@@ -1,5 +1,7 @@
 package utility;
 
+import java.awt.Color;
+
 /**
  *
  * @author nelson
@@ -30,4 +32,5 @@ public class RegularConstants {
     public static boolean STARTED = false;
     public static boolean IMAGE_FIG = false;
 
+    public static Color COLORS[] = {Color.MAGENTA, Color.BLACK, Color.BLUE};
 }
